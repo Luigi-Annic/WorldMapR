@@ -18,7 +18,7 @@
 #' @importFrom rnaturalearth ne_countries
 #' @importFrom countrycode countrycode
 #' @importFrom dplyr "%>%" left_join select
-#' @importFrom ggplot ggplot geom_sf theme labs scale_fill_viridis_c coord_sf xlab ylab ggtitle
+#' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_c coord_sf xlab ylab ggtitle
 #'
 worldplot <- function(simdata, div = 1, ColName, CountryName, CountryNameType, rangeVal,
                       longitude = c(-180, 180) ,latitude = c(-90, 90),
