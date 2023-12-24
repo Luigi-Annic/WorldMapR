@@ -8,3 +8,9 @@
 #'
 #' @format An object of class \code{"data.frame"}
 #' @keywords datasets
+#'
+#' #' @examples
+#'
+#' data(testdata1)
+#' head(testdata1)
+"testdata1"
