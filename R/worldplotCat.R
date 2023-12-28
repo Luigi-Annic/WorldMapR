@@ -1,31 +1,32 @@
-#' @title worldplot
+#' @title worldplotCat
 #'
-#' @description Plot a world map for continuous data
+#' @description Plot a world map for categorical data
 #'
 #' @param simdata Data set containing the list of nations and the variable that we want to plot
 #' @param div Controlling image quality (and image size). Default value is 1
 #' @param ColName character variable with the name of the variable of interest
 #' @param CountryName character variable with the name of the country names column (iso_a2 is the only format accepted atm)
 #' @param CountryNameType character variable with the coding for CountryName. It can be "isoa2", "isoa3", or "name"
-#' @param rangeVal limit values that are to be defined for the map
 #' @param longitude longitude limits. Default is c(-180, 180) (whole world)
 #' @param latitude latitude limits. Default is c(-90, 90) (whole world)
 #' @param title title of the plot. Default is no title
 #' @param legendTitle title of the legend. Default is the name of the filling variable
+#' @param Categories categories labels to be plotted in the legend
 #' @param annote do you want to plot country labels (iso2 code) on the map?
 #'
 #' @return a map
 #' @export
 #' @importFrom rnaturalearth ne_countries
 #' @importFrom countrycode countrycode
-#' @importFrom dplyr "%>%" left_join select filter mutate relocate
-#' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_c coord_sf xlab ylab ggtitle aes unit element_text element_blank element_rect geom_text
+#' @importFrom dplyr "%>%" left_join select select filter mutate relocate
+#' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_d coord_sf xlab ylab ggtitle aes unit element_text element_blank element_rect geom_text
 #' @importFrom sf st_centroid st_coordinates
 #'
-worldplot <- function(simdata, div = 1, ColName, CountryName, CountryNameType, rangeVal,
-                      longitude = c(-180, 180) ,latitude = c(-90, 90),
-                      title = "", legendTitle = as.character(ColName),
-                      annote = FALSE) {
+worldplotCat <- function(simdata, div = 1, ColName, CountryName, CountryNameType,
+                         longitude = c(-180, 180) ,latitude = c(-90, 90),
+                         title = "", legendTitle = as.character(ColName),
+                         Categories = levels(factor(map_df$MapFiller)),
+                         annote = FALSE) {
 
   world <- ne_countries(scale = "medium", continent = NULL, returnclass = "sf")
 
@@ -54,14 +55,15 @@ worldplot <- function(simdata, div = 1, ColName, CountryName, CountryNameType, r
     geom_sf(color= 'black', aes(fill= MapFiller)) +
     theme(legend.key.size = unit(1, 'lines'),
           legend.text = element_text(size= 8),
-          legend.title = element_text(size= 8),
-          plot.title = element_text(size=8),
+          legend.title = element_text(size = 8),
+          plot.title = element_text(size= 8),
           panel.grid = element_blank(),
           panel.background = element_rect(fill = 'grey95'))+
     labs(fill= legendTitle)+
-    scale_fill_viridis_c(option='viridis', na.value = 'grey80',direction=1,begin=0.3, limits= rangeVal)+
+    scale_fill_viridis_d(option = 'viridis',begin= 0.3, na.value = 'grey80', direction= 1,
+                         labels= c(Categories, "NA"), na.translate=T)+
     coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW') +
-    xlab('') + ylab('')+
+    xlab('')+ ylab('')+
     ggtitle(title)
 
   } else if (annote == TRUE) {
@@ -87,17 +89,18 @@ worldplot <- function(simdata, div = 1, ColName, CountryName, CountryNameType, r
       geom_sf(color= 'black', aes(fill= MapFiller)) +
       theme(legend.key.size = unit(1, 'lines'),
             legend.text = element_text(size= 8),
-            legend.title = element_text(size= 8),
-            plot.title = element_text(size=8),
+            legend.title = element_text(size = 8),
+            plot.title = element_text(size= 8),
             panel.grid = element_blank(),
             panel.background = element_rect(fill = 'grey95'))+
       labs(fill= legendTitle)+
-      scale_fill_viridis_c(option='viridis', na.value = 'grey80',direction=1,begin=0.3, limits= rangeVal)+
+      scale_fill_viridis_d(option = 'viridis',begin= 0.3, na.value = 'grey80', direction= 1,
+                           labels= c(Categories, "NA"), na.translate=T)+
       coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW') +
-      xlab('') + ylab('')+
+      xlab('')+ ylab('')+
       ggtitle(title)+
       geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2),size= 2, color= 'black', fontface= 'bold')
   }
 
   wplot
-  }
+}
