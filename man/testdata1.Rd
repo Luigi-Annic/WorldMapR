@@ -13,8 +13,8 @@ data(testdata1)
 \description{
 Data from a random simulation with continuous data, for testing the functions
 }
-\keyword{#'}
-\keyword{@examples}
-\keyword{data(testdata1)}
+\examples{
+data(testdata1)
+head(testdata1)
+}
 \keyword{datasets}
-\keyword{head(testdata1)}
