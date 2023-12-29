@@ -3,7 +3,7 @@ Type: Package
 Title: Worldwide or Continent-Based Heat Maps
 Version: 0.0.1
 Authors@R: c(
-    person("Luigi", "Annicchiarico", email = "luigi.annic@gmail.com", role = c("cre", "aut"))
+    person("Luigi", "Annicchiarico", email = "luigi.annic@gmail.com", role = c("cre", "aut", "cph"))
     )
 Description: Easily plot heat maps of the whole world
     or subsections, based on continuous or categorical data. You can also add country labels to the map. 
