@@ -11,7 +11,7 @@ An object of class \code{"data.frame"}
 data(testdata1b)
 }
 \description{
-Data from a random simulation with continuous and categorical data, for testing the functions
+Data from a random simulation with continuous and categorical data.
 }
 \examples{
 data(testdata1b)

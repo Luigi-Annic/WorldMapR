@@ -1,4 +1,4 @@
-worldplotCat(simdata = testdata1b,
+worldplotCat(data = testdata1b,
              div = 1,
              ColName = "VCat",
              CountryName = "Cshort",

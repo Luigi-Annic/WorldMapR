@@ -1,4 +1,4 @@
-worldplot(simdata = testdata1b,
+worldplot(data = testdata1b,
           div = 1.2,
           ColName = "VNum",
           CountryName = "Cshort",

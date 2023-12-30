@@ -5,11 +5,11 @@
 \title{worldplot}
 \usage{
 worldplot(
-  simdata,
+  data,
   div = 1,
   ColName,
   CountryName,
-  CountryNameType,
+  CountryNameType = "isoa2",
   rangeVal,
   longitude = c(-180, 180),
   latitude = c(-90, 90),
@@ -19,15 +19,15 @@ worldplot(
 )
 }
 \arguments{
-\item{simdata}{Data set containing the list of nations and the variable that we want to plot}
+\item{data}{Data set containing the list of nations and the variable that we want to plot}
 
 \item{div}{Controlling image quality (and image size). Default value is 1}
 
 \item{ColName}{character variable with the name of the variable of interest}
 
-\item{CountryName}{character variable with the name of the country names column (iso_a2 is the only format accepted atm)}
+\item{CountryName}{character variable with the name of the country names column}
 
-\item{CountryNameType}{character variable with the coding for CountryName. It can be "isoa2", "isoa3", or "name"}
+\item{CountryNameType}{character variable with the coding for CountryName. It can be "isoa2" (default), "isoa3", or "name"}
 
 \item{rangeVal}{limit values that are to be defined for the map}
 
@@ -46,4 +46,15 @@ a map
 }
 \description{
 Plot a world map for continuous data
+}
+\examples{
+data(testdata1b)
+worldplot(data = testdata1b,
+          div = 1,
+          ColName = "VNum",
+          CountryName = "Cshort",
+          CountryNameType = "isoa2",
+          rangeVal = c(0,50),
+          annote = FALSE)
+
 }

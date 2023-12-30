@@ -2,11 +2,11 @@
 #'
 #' @description Plot a world map for categorical data
 #'
-#' @param simdata Data set containing the list of nations and the variable that we want to plot
+#' @param data Data set containing the list of nations and the variable that we want to plot
 #' @param div Controlling image quality (and image size). Default value is 1
 #' @param ColName character variable with the name of the variable of interest
-#' @param CountryName character variable with the name of the country names column (iso_a2 is the only format accepted atm)
-#' @param CountryNameType character variable with the coding for CountryName. It can be "isoa2", "isoa3", or "name"
+#' @param CountryName character variable with the name of the country names column
+#' @param CountryNameType character variable with the coding for CountryName. It can be "isoa2" (default), "isoa3", or "name"
 #' @param longitude longitude limits. Default is c(-180, 180) (whole world)
 #' @param latitude latitude limits. Default is c(-90, 90) (whole world)
 #' @param title title of the plot. Default is no title
@@ -22,7 +22,16 @@
 #' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_d coord_sf xlab ylab ggtitle aes unit element_text element_blank element_rect geom_text
 #' @importFrom sf st_centroid st_coordinates
 #'
-worldplotCat <- function(simdata, div = 1, ColName, CountryName, CountryNameType,
+#' @examples
+#' data(testdata1b)
+#' worldplotCat(data = testdata1b,
+#'              div = 1,
+#'              ColName = "VCat",
+#'              CountryName = "Cshort",
+#'              CountryNameType = "isoa2",
+#'              annote = FALSE)
+#'
+worldplotCat <- function(data, div = 1, ColName, CountryName, CountryNameType,
                          longitude = c(-180, 180) ,latitude = c(-90, 90),
                          title = "", legendTitle = as.character(ColName),
                          Categories = levels(factor(map_df$MapFiller)),
@@ -33,20 +42,23 @@ worldplotCat <- function(simdata, div = 1, ColName, CountryName, CountryNameType
   map_df0<- world %>%
     select(name, iso_a2, iso_a3, geometry)
 
-  simdata$MapFiller <- simdata[, which(colnames(simdata) == ColName)]
+  simdata <- c()
+
+  simdata$MapFiller <- data[, which(colnames(data) == ColName)]
 
   if (CountryNameType == "isoa2") {
-    simdata$iso_a2 <- simdata[, which(colnames(simdata) == CountryName)]
+    simdata$iso_a2 <- data[, which(colnames(data) == CountryName)]
   } else if (CountryNameType == "name") {
-    simdata$iso_a2 <- countrycode(sourcevar = simdata[, which(colnames(simdata) == CountryName)],
+    simdata$iso_a2 <- countrycode(sourcevar = data[, which(colnames(data) == CountryName)],
                                   origin = "country.name", destination = "iso2c")
   } else if (CountryNameType == "isoa3") {
-    simdata$iso_a2 <- countrycode(sourcevar = simdata[, which(colnames(simdata) == CountryName)],
+    simdata$iso_a2 <- countrycode(sourcevar = data[, which(colnames(data) == CountryName)],
                                   origin = "iso3c", destination = "iso2c")
   } else {
     simdata$iso_a2 <- NULL
   }
 
+  simdata <- as.data.frame(simdata)
 
   map_df <- left_join(map_df0, simdata, by = "iso_a2")
 
@@ -78,7 +90,6 @@ worldplotCat <- function(simdata, div = 1, ColName, CountryName, CountryNameType
       mutate( X = c(0,   178, 79, 40, 30, 31, -14),
               Y = c(-80, -17, 21, 55, 12, 7,  14)) %>%
       relocate(geometry, .after = Y)
-
 
     world_points <- rbind(world_points0, leftout)
 

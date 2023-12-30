@@ -1,4 +1,4 @@
-worldplot(simdata = testdata1,
+worldplot(data = testdata1,
           ColName = "IntVal",
           CountryName = "countrycode",
           CountryNameType = "isoa2",

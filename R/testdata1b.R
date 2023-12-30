@@ -1,6 +1,6 @@
 #' Simulated data set 1b
 #'
-#' Data from a random simulation with continuous and categorical data, for testing the functions
+#' Data from a random simulation with continuous and categorical data.
 #'
 #' @docType data
 #'
