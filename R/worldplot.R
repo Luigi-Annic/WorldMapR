@@ -62,7 +62,6 @@ worldplot <- function(data, div = 1, ColName, CountryName, CountryNameType = "is
 
   map_df <- left_join(map_df0, simdata, by = "iso_a2")
 
-  if (annote == FALSE) {
   wplot <- ggplot(data= map_df) +
     geom_sf(color= 'black', aes(fill= MapFiller)) +
     theme(legend.key.size = unit(1, 'lines'),
@@ -77,7 +76,7 @@ worldplot <- function(data, div = 1, ColName, CountryName, CountryNameType = "is
     xlab('') + ylab('')+
     ggtitle(title)
 
-  } else if (annote == TRUE) {
+  if (annote == TRUE) {
     point_nations<- map_df %>%
       filter(!(is.na(iso_a2) | iso_a2 %in% c('RU', 'AQ', 'FJ',
                                              'IN', 'SD','SS', 'SN')))
@@ -96,19 +95,7 @@ worldplot <- function(data, div = 1, ColName, CountryName, CountryNameType = "is
     world_points <- world_points %>%
       filter(!(is.na(MapFiller)))
 
-    wplot <- ggplot(data= map_df) +
-      geom_sf(color= 'black', aes(fill= MapFiller)) +
-      theme(legend.key.size = unit(1, 'lines'),
-            legend.text = element_text(size= 8),
-            legend.title = element_text(size= 8),
-            plot.title = element_text(size=8),
-            panel.grid = element_blank(),
-            panel.background = element_rect(fill = 'grey95'))+
-      labs(fill= legendTitle)+
-      scale_fill_viridis_c(option='viridis', na.value = 'grey80',direction=1,begin=0.3, limits= rangeVal)+
-      coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW') +
-      xlab('') + ylab('')+
-      ggtitle(title)+
+    wplot <- wplot +
       geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2),size= 2, color= 'black', fontface= 'bold')
   }
 
