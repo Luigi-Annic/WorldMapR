@@ -37,7 +37,7 @@ worldplotCat <- function(data, div = 1, ColName, CountryName, CountryNameType,
                          Categories = levels(factor(map_df$MapFiller)),
                          annote = FALSE) {
 
-  world <- ne_countries(scale = 110, continent = NULL, returnclass = "sf")
+  world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
   map_df0<- world %>%
     select(name, iso_a2, iso_a3, geometry)
