@@ -40,6 +40,9 @@ worldplotCat <- function(data, div = 1, ColName, CountryName, CountryNameType,
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
   map_df0<- world %>%
+    select(name, iso_a2_eh, iso_a3_eh, geometry) %>%
+    mutate(iso_a2 = ifelse(name %in% c("Indian Ocean Ter." , "Ashmore and Cartier Is."), -99, iso_a2_eh),
+           iso_a3 = ifelse(name %in% c("Indian Ocean Ter." , "Ashmore and Cartier Is."), -99, iso_a3_eh)) %>%
     select(name, iso_a2, iso_a3, geometry)
 
   simdata <- c()
@@ -78,22 +81,9 @@ worldplotCat <- function(data, div = 1, ColName, CountryName, CountryNameType,
     ggtitle(title)
 
   if (annote == TRUE) {
-    point_nations<- map_df %>%
-      filter(!(is.na(iso_a2) | iso_a2 %in% c('RU', 'AQ', 'FJ',
-                                             'IN', 'SD','SS', 'SN')))
 
-    world_points0<- cbind(point_nations, st_coordinates(st_centroid(point_nations$geometry)))
-
-    leftout <- map_df %>%
-      filter(iso_a2 %in% c('RU', 'AQ', 'FJ', 'IN', 'SD','SS', 'SN')) %>%
-      mutate( X = c(0,   178, 79, 40, 30, 31, -14),
-              Y = c(-80, -17, 21, 55, 12, 7,  14)) %>%
-      relocate(geometry, .after = Y)
-
-    world_points <- rbind(world_points0, leftout)
-
-    world_points <- world_points %>%
-      filter(!(is.na(MapFiller)))
+    world_points <- geometries_data(exclude.iso.na = T,
+                                    countries.list = simdata$iso_a2[!is.na(simdata$MapFiller)])
 
     wplot <- wplot +
       geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2),size= 2, color= 'black', fontface= 'bold')

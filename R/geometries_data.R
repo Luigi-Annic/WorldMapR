@@ -13,6 +13,7 @@
 #' @importFrom dplyr "%>%"  select filter mutate arrange
 #' @importFrom sf st_centroid st_coordinates
 #'
+#'
 #' @examples
 #' geometries_data(countries.list = c("IT", "FR", "US"))
 #'
@@ -22,7 +23,11 @@ geometries_data <- function(exclude.iso.na = TRUE,
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
   map_df0<- world %>%
+    select(name, iso_a2_eh, iso_a3_eh, geometry) %>%
+    mutate(iso_a2 = ifelse(name %in% c("Indian Ocean Ter." , "Ashmore and Cartier Is."), -99, iso_a2_eh),
+           iso_a3 = ifelse(name %in% c("Indian Ocean Ter." , "Ashmore and Cartier Is."), -99, iso_a3_eh)) %>%
     select(name, iso_a2, iso_a3, geometry)
+
 
 
   sepNat <- c('AQ', 'FJ', 'FR', 'IN', 'RU', 'SD', 'SN', 'SS')
@@ -45,7 +50,7 @@ geometries_data <- function(exclude.iso.na = TRUE,
 
   if (exclude.iso.na == TRUE) {
     world_points <- world_points %>%
-      filter(!(is.na(iso_a2)))
+      filter(!(is.na(iso_a2) | iso_a2 == -99))
   }
 
   if (!is.null(countries.list)) {
@@ -55,7 +60,7 @@ geometries_data <- function(exclude.iso.na = TRUE,
     notfoundcodes <- countries.list[!(countries.list %in% world_points$iso_a2)]
 
     if (length(notfoundcodes) > 0) {
-      warning("The following iso2 codes you provided do not match in the data base: \n")
+      warning("Some iso2 codes you provided (listed above) do not match in the data base: \n")
       print(notfoundcodes)
     }
   }
