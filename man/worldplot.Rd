@@ -6,7 +6,6 @@
 \usage{
 worldplot(
   data,
-  div = 1,
   ColName,
   CountryName,
   CountryNameType = "isoa2",
@@ -15,31 +14,32 @@ worldplot(
   latitude = c(-90, 90),
   title = "",
   legendTitle = as.character(ColName),
-  annote = FALSE
+  annote = FALSE,
+  div = 1
 )
 }
 \arguments{
 \item{data}{Data set containing the list of nations and the variable that we want to plot}
 
+\item{ColName}{Character variable with the name of the variable of interest}
+
+\item{CountryName}{Character variable with the name of the country names column}
+
+\item{CountryNameType}{Character variable with the coding for `CountryName.` It can be "isoa2" (default), "isoa3", or "name"}
+
+\item{rangeVal}{Limit values that are to be defined for the map}
+
+\item{longitude}{Longitude limits. Default is `c(-180, 180)` (whole world)}
+
+\item{latitude}{Latitude limits. Default is `c(-90, 90)` (whole world)}
+
+\item{title}{Title of the plot. Default is no title}
+
+\item{legendTitle}{Title of the legend. Default is the name of the filling variable}
+
+\item{annote}{Do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`}
+
 \item{div}{Controlling image quality (and image size). Default value is 1}
-
-\item{ColName}{character variable with the name of the variable of interest}
-
-\item{CountryName}{character variable with the name of the country names column}
-
-\item{CountryNameType}{character variable with the coding for CountryName. It can be "isoa2" (default), "isoa3", or "name"}
-
-\item{rangeVal}{limit values that are to be defined for the map}
-
-\item{longitude}{longitude limits. Default is c(-180, 180) (whole world)}
-
-\item{latitude}{latitude limits. Default is c(-90, 90) (whole world)}
-
-\item{title}{title of the plot. Default is no title}
-
-\item{legendTitle}{title of the legend. Default is the name of the filling variable}
-
-\item{annote}{do you want to plot country labels (iso2 code) on the map?}
 }
 \value{
 a map

@@ -1,13 +1,13 @@
 #' @title geometries_data
 #'
 #' @description
-#' Generate a data frame with information about geometries and centroid coordinates of
-#' all the countries or only a selected group.
+#' This function generates a data frame with information about geometries and centroid coordinates of
+#' countries. You can choose whether to keep all the countries or a subset.
 #'
-#' @param exclude.iso.na if TRUE (default), countries that do not have a iso code are excluded from the table
-#' @param countries.list List of the iso_a2 codes of countries that are to be included. By default it is set to NULL and all countries are included
+#' @param exclude.iso.na if `TRUE` (default), countries that do not have a iso code are excluded from the table
+#' @param countries.list List of the iso a2 codes of countries that are to be included. By default it is set to `NULL` and all countries are included
 
-#' @return a data frame
+#' @return an object of class `data.frame` and `sf`
 #' @export
 #' @importFrom rnaturalearth ne_countries
 #' @importFrom dplyr "%>%"  select filter mutate arrange

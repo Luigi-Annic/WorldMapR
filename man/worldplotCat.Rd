@@ -6,7 +6,6 @@
 \usage{
 worldplotCat(
   data,
-  div = 1,
   ColName,
   CountryName,
   CountryNameType,
@@ -15,23 +14,22 @@ worldplotCat(
   title = "",
   legendTitle = as.character(ColName),
   Categories = levels(factor(map_df$MapFiller)),
-  annote = FALSE
+  annote = FALSE,
+  div = 1
 )
 }
 \arguments{
 \item{data}{Data set containing the list of nations and the variable that we want to plot}
 
-\item{div}{Controlling image quality (and image size). Default value is 1}
-
 \item{ColName}{character variable with the name of the variable of interest}
 
 \item{CountryName}{character variable with the name of the country names column}
 
-\item{CountryNameType}{character variable with the coding for CountryName. It can be "isoa2" (default), "isoa3", or "name"}
+\item{CountryNameType}{character variable with the coding for `CountryName`. It can be "isoa2" (default), "isoa3", or "name"}
 
-\item{longitude}{longitude limits. Default is c(-180, 180) (whole world)}
+\item{longitude}{longitude limits. Default is `c(-180, 180)` (whole world)}
 
-\item{latitude}{latitude limits. Default is c(-90, 90) (whole world)}
+\item{latitude}{latitude limits. Default is `c(-90, 90)` (whole world)}
 
 \item{title}{title of the plot. Default is no title}
 
@@ -39,7 +37,9 @@ worldplotCat(
 
 \item{Categories}{categories labels to be plotted in the legend}
 
-\item{annote}{do you want to plot country labels (iso2 code) on the map?}
+\item{annote}{do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`}
+
+\item{div}{Controlling image quality (and image size). Default value is 1}
 }
 \value{
 a map

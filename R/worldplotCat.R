@@ -3,16 +3,16 @@
 #' @description Plot a world map for categorical data
 #'
 #' @param data Data set containing the list of nations and the variable that we want to plot
-#' @param div Controlling image quality (and image size). Default value is 1
 #' @param ColName character variable with the name of the variable of interest
 #' @param CountryName character variable with the name of the country names column
-#' @param CountryNameType character variable with the coding for CountryName. It can be "isoa2" (default), "isoa3", or "name"
-#' @param longitude longitude limits. Default is c(-180, 180) (whole world)
-#' @param latitude latitude limits. Default is c(-90, 90) (whole world)
+#' @param CountryNameType character variable with the coding for `CountryName`. It can be "isoa2" (default), "isoa3", or "name"
+#' @param longitude longitude limits. Default is `c(-180, 180)` (whole world)
+#' @param latitude latitude limits. Default is `c(-90, 90)` (whole world)
 #' @param title title of the plot. Default is no title
 #' @param legendTitle title of the legend. Default is the name of the filling variable
 #' @param Categories categories labels to be plotted in the legend
-#' @param annote do you want to plot country labels (iso2 code) on the map?
+#' @param annote do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`
+#' @param div Controlling image quality (and image size). Default value is 1
 #'
 #' @return a map
 #' @export
@@ -31,11 +31,12 @@
 #'              CountryNameType = "isoa2",
 #'              annote = FALSE)
 #'
-worldplotCat <- function(data, div = 1, ColName, CountryName, CountryNameType,
+worldplotCat <- function(data,
+                         ColName, CountryName, CountryNameType,
                          longitude = c(-180, 180) ,latitude = c(-90, 90),
                          title = "", legendTitle = as.character(ColName),
                          Categories = levels(factor(map_df$MapFiller)),
-                         annote = FALSE) {
+                         annote = FALSE, div = 1) {
 
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
@@ -75,7 +76,7 @@ worldplotCat <- function(data, div = 1, ColName, CountryName, CountryNameType,
           panel.background = element_rect(fill = 'grey95'))+
     labs(fill= legendTitle)+
     scale_fill_viridis_d(option = 'viridis',begin= 0.3, na.value = 'grey80', direction= 1,
-                         labels= c(Categories, "NA"), na.translate=T)+
+                         labels= c(Categories, "NA"), na.translate= TRUE)+
     coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW') +
     xlab('')+ ylab('')+
     ggtitle(title)
@@ -86,7 +87,7 @@ worldplotCat <- function(data, div = 1, ColName, CountryName, CountryNameType,
                                     countries.list = simdata$iso_a2[!is.na(simdata$MapFiller)])
 
     wplot <- wplot +
-      geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2),size= 2, color= 'black', fontface= 'bold')
+      geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2), size= 2, color= 'black', fontface= 'bold')
   }
 
   wplot

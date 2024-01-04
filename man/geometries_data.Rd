@@ -7,16 +7,16 @@
 geometries_data(exclude.iso.na = TRUE, countries.list = NULL)
 }
 \arguments{
-\item{exclude.iso.na}{if TRUE (default), countries that do not have a iso code are excluded from the table}
+\item{exclude.iso.na}{if `TRUE` (default), countries that do not have a iso code are excluded from the table}
 
-\item{countries.list}{List of the iso_a2 codes of countries that are to be included. By default it is set to NULL and all countries are included}
+\item{countries.list}{List of the iso a2 codes of countries that are to be included. By default it is set to `NULL` and all countries are included}
 }
 \value{
-a data frame
+an object of class `data.frame` and `sf`
 }
 \description{
-Generate a data frame with information about geometries and centroid coordinates of
-all the countries or only a selected group.
+This function generates a data frame with information about geometries and centroid coordinates of
+countries. You can choose whether to keep all the countries or a subset.
 }
 \examples{
 geometries_data(countries.list = c("IT", "FR", "US"))

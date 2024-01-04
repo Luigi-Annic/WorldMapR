@@ -3,16 +3,16 @@
 #' @description Plot a world map for continuous data
 #'
 #' @param data Data set containing the list of nations and the variable that we want to plot
+#' @param ColName Character variable with the name of the variable of interest
+#' @param CountryName Character variable with the name of the country names column
+#' @param CountryNameType Character variable with the coding for `CountryName.` It can be "isoa2" (default), "isoa3", or "name"
+#' @param rangeVal Limit values that are to be defined for the map
+#' @param longitude Longitude limits. Default is `c(-180, 180)` (whole world)
+#' @param latitude Latitude limits. Default is `c(-90, 90)` (whole world)
+#' @param title Title of the plot. Default is no title
+#' @param legendTitle Title of the legend. Default is the name of the filling variable
+#' @param annote Do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`
 #' @param div Controlling image quality (and image size). Default value is 1
-#' @param ColName character variable with the name of the variable of interest
-#' @param CountryName character variable with the name of the country names column
-#' @param CountryNameType character variable with the coding for CountryName. It can be "isoa2" (default), "isoa3", or "name"
-#' @param rangeVal limit values that are to be defined for the map
-#' @param longitude longitude limits. Default is c(-180, 180) (whole world)
-#' @param latitude latitude limits. Default is c(-90, 90) (whole world)
-#' @param title title of the plot. Default is no title
-#' @param legendTitle title of the legend. Default is the name of the filling variable
-#' @param annote do you want to plot country labels (iso2 code) on the map?
 #'
 #' @return a map
 #' @export
@@ -32,10 +32,11 @@
 #'           rangeVal = c(0,50),
 #'           annote = FALSE)
 #'
-worldplot <- function(data, div = 1, ColName, CountryName, CountryNameType = "isoa2", rangeVal,
+worldplot <- function(data,
+                      ColName, CountryName, CountryNameType = "isoa2", rangeVal,
                       longitude = c(-180, 180) ,latitude = c(-90, 90),
                       title = "", legendTitle = as.character(ColName),
-                      annote = FALSE) {
+                      annote = FALSE, div = 1) {
 
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
@@ -85,7 +86,7 @@ worldplot <- function(data, div = 1, ColName, CountryName, CountryNameType = "is
                                     countries.list = simdata$iso_a2[!is.na(simdata$MapFiller)])
 
     wplot <- wplot +
-      geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2),size= 2, color= 'black', fontface= 'bold')
+      geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2), size= 2, color= 'black', fontface= 'bold')
   }
 
   wplot
