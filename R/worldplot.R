@@ -13,12 +13,13 @@
 #' @param legendTitle Title of the legend. Default is the name of the filling variable.
 #' @param annote Do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`.
 #' @param div Controlling image quality (and image size). Default value is 1.
-#' @param save Save the plot in a jpg file?.
+#' @param save Save the plot in a jpg file?
 #' @param filename Only if is save set to TRUE. Name of the file.
 #' @param path Only if save is set to TRUE. Path of the directory where the file is to be saved.
 #' @param width Only if save is set to TRUE. Width of the file.
 #' @param height Only if save is set to TRUE. Height of the file.
 #' @param units Only if save is set to TRUE. Units for width and height. Can be "cm", "mm", "in", or "px".
+#' @param scale Only if save is set to TRUE. Scaling factor for adjusting image dimensions
 #'
 #' @return a map
 #' @export
@@ -44,7 +45,7 @@ worldplot <- function(data,
                       title = "", legendTitle = as.character(ColName),
                       annote = FALSE, div = 1,
                       save = FALSE, filename = "worldplot.jpg", path = getwd(),
-                      width = 20, height = 10, units = "cm") {
+                      width = 20, height = 10, units = "cm", scale = 1) {
 
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
@@ -105,7 +106,8 @@ worldplot <- function(data,
                    width = width,
                    height = height,
                    units = units,
-                   dpi = "retina")
+                   dpi = "retina",
+                   scale = scale)
   }
 
   }

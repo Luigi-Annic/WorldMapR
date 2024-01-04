@@ -21,5 +21,8 @@ worldplot(data = testdata1b,
           legendTitle = "Rand. Vals",
           save = TRUE,
           path = "C:/Users/luigi/Desktop/spaz",
-          filename = "worldplot2.jpg")
+          filename = "worldplot3.jpg",
+          width = 5,
+          height = 5,
+          units = "cm")
 

@@ -21,7 +21,8 @@ worldplotCat(
   path = getwd(),
   width = 20,
   height = 10,
-  units = "cm"
+  units = "cm",
+  scale = 1
 )
 }
 \arguments{
@@ -47,7 +48,7 @@ worldplotCat(
 
 \item{div}{Controlling image quality (and image size). Default value is 1}
 
-\item{save}{Save the plot in a jpg file?.}
+\item{save}{Save the plot in a jpg file?}
 
 \item{filename}{Only if is save set to TRUE. Name of the file.}
 
@@ -58,6 +59,8 @@ worldplotCat(
 \item{height}{Only if save is set to TRUE. Height of the file.}
 
 \item{units}{Only if save is set to TRUE. Units for width and height. Can be "cm", "mm", "in", or "px".}
+
+\item{scale}{Only if save is set to TRUE. Scaling factor for adjusting image dimensions}
 }
 \value{
 a map
