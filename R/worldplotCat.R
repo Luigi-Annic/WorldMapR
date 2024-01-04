@@ -13,13 +13,19 @@
 #' @param Categories categories labels to be plotted in the legend
 #' @param annote do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`
 #' @param div Controlling image quality (and image size). Default value is 1
+#' @param save Save the plot in a jpg file?.
+#' @param filename Only if is save set to TRUE. Name of the file.
+#' @param path Only if save is set to TRUE. Path of the directory where the file is to be saved.
+#' @param width Only if save is set to TRUE. Width of the file.
+#' @param height Only if save is set to TRUE. Height of the file.
+#' @param units Only if save is set to TRUE. Units for width and height. Can be "cm", "mm", "in", or "px".
 #'
 #' @return a map
 #' @export
 #' @importFrom rnaturalearth ne_countries
 #' @importFrom countrycode countrycode
 #' @importFrom dplyr "%>%" left_join select select filter mutate relocate
-#' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_d coord_sf xlab ylab ggtitle aes unit element_text element_blank element_rect geom_text
+#' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_d coord_sf xlab ylab ggtitle aes unit element_text element_blank element_rect geom_text ggsave
 #' @importFrom sf st_centroid st_coordinates
 #'
 #' @examples
@@ -36,7 +42,9 @@ worldplotCat <- function(data,
                          longitude = c(-180, 180) ,latitude = c(-90, 90),
                          title = "", legendTitle = as.character(ColName),
                          Categories = levels(factor(map_df$MapFiller)),
-                         annote = FALSE, div = 1) {
+                         annote = FALSE, div = 1,
+                         save = FALSE, filename = "worldplot.jpg", path = getwd(),
+                         width = 20, height = 10, units = "cm") {
 
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
@@ -90,5 +98,15 @@ worldplotCat <- function(data,
       geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2), size= 2, color= 'black', fontface= 'bold')
   }
 
-  wplot
+  print(wplot)
+
+  if (save == TRUE) {
+    ggplot2::ggsave(filename = filename,
+                    path = path,
+                    width = width,
+                    height = height,
+                    units = units,
+                    dpi = "retina")
+  }
+
 }

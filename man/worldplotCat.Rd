@@ -15,7 +15,13 @@ worldplotCat(
   legendTitle = as.character(ColName),
   Categories = levels(factor(map_df$MapFiller)),
   annote = FALSE,
-  div = 1
+  div = 1,
+  save = FALSE,
+  filename = "worldplot.jpg",
+  path = getwd(),
+  width = 20,
+  height = 10,
+  units = "cm"
 )
 }
 \arguments{
@@ -40,6 +46,18 @@ worldplotCat(
 \item{annote}{do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`}
 
 \item{div}{Controlling image quality (and image size). Default value is 1}
+
+\item{save}{Save the plot in a jpg file?.}
+
+\item{filename}{Only if is save set to TRUE. Name of the file.}
+
+\item{path}{Only if save is set to TRUE. Path of the directory where the file is to be saved.}
+
+\item{width}{Only if save is set to TRUE. Width of the file.}
+
+\item{height}{Only if save is set to TRUE. Height of the file.}
+
+\item{units}{Only if save is set to TRUE. Units for width and height. Can be "cm", "mm", "in", or "px".}
 }
 \value{
 a map

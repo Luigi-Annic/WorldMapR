@@ -15,31 +15,49 @@ worldplot(
   title = "",
   legendTitle = as.character(ColName),
   annote = FALSE,
-  div = 1
+  div = 1,
+  save = FALSE,
+  filename = "worldplot.jpg",
+  path = getwd(),
+  width = 20,
+  height = 10,
+  units = "cm"
 )
 }
 \arguments{
-\item{data}{Data set containing the list of nations and the variable that we want to plot}
+\item{data}{Data set containing the list of nations and the variable that we want to plot.}
 
-\item{ColName}{Character variable with the name of the variable of interest}
+\item{ColName}{Character variable with the name of the variable of interest.}
 
-\item{CountryName}{Character variable with the name of the country names column}
+\item{CountryName}{Character variable with the name of the country names column.}
 
-\item{CountryNameType}{Character variable with the coding for `CountryName.` It can be "isoa2" (default), "isoa3", or "name"}
+\item{CountryNameType}{Character variable with the coding for `CountryName.` It can be "isoa2" (default), "isoa3", or "name".}
 
-\item{rangeVal}{Limit values that are to be defined for the map}
+\item{rangeVal}{Limit values that are to be defined for the map.}
 
-\item{longitude}{Longitude limits. Default is `c(-180, 180)` (whole world)}
+\item{longitude}{Longitude limits. Default is `c(-180, 180)` (whole world).}
 
-\item{latitude}{Latitude limits. Default is `c(-90, 90)` (whole world)}
+\item{latitude}{Latitude limits. Default is `c(-90, 90)` (whole world).}
 
-\item{title}{Title of the plot. Default is no title}
+\item{title}{Title of the plot. Default is no title.}
 
-\item{legendTitle}{Title of the legend. Default is the name of the filling variable}
+\item{legendTitle}{Title of the legend. Default is the name of the filling variable.}
 
-\item{annote}{Do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`}
+\item{annote}{Do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`.}
 
-\item{div}{Controlling image quality (and image size). Default value is 1}
+\item{div}{Controlling image quality (and image size). Default value is 1.}
+
+\item{save}{Save the plot in a jpg file?.}
+
+\item{filename}{Only if is save set to TRUE. Name of the file.}
+
+\item{path}{Only if save is set to TRUE. Path of the directory where the file is to be saved.}
+
+\item{width}{Only if save is set to TRUE. Width of the file.}
+
+\item{height}{Only if save is set to TRUE. Height of the file.}
+
+\item{units}{Only if save is set to TRUE. Units for width and height. Can be "cm", "mm", "in", or "px".}
 }
 \value{
 a map
