@@ -46,7 +46,7 @@ worldplotCat(
 
 \item{annote}{do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`}
 
-\item{div}{Controlling image quality (and image size). Default value is 1}
+\item{div}{Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.}
 
 \item{save}{Save the plot in a jpg file?}
 

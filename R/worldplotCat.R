@@ -12,7 +12,7 @@
 #' @param legendTitle title of the legend. Default is the name of the filling variable
 #' @param Categories categories labels to be plotted in the legend
 #' @param annote do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`
-#' @param div Controlling image quality (and image size). Default value is 1
+#' @param div Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.
 #' @param save Save the plot in a jpg file?
 #' @param filename Only if is save set to TRUE. Name of the file.
 #' @param path Only if save is set to TRUE. Path of the directory where the file is to be saved.
@@ -77,10 +77,10 @@ worldplotCat <- function(data,
 
   wplot <- ggplot(data= map_df) +
     geom_sf(color= 'black', aes(fill= MapFiller)) +
-    theme(legend.key.size = unit(1, 'lines'),
-          legend.text = element_text(size= 8),
-          legend.title = element_text(size = 8),
-          plot.title = element_text(size= 8),
+    theme(legend.key.size = unit(1/div, 'lines'),
+          legend.text = element_text(size= 8/div),
+          legend.title = element_text(size = 8/div),
+          plot.title = element_text(size= 8/div),
           panel.grid = element_blank(),
           panel.background = element_rect(fill = 'grey95'))+
     labs(fill= legendTitle)+
@@ -96,7 +96,7 @@ worldplotCat <- function(data,
                                     countries.list = simdata$iso_a2[!is.na(simdata$MapFiller)])
 
     wplot <- wplot +
-      geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2), size= 2, color= 'black', fontface= 'bold')
+      geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2), size= 2/div, color= 'black', fontface= 'bold')
   }
 
   print(wplot)
