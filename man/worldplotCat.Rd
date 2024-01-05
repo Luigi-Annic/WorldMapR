@@ -26,25 +26,25 @@ worldplotCat(
 )
 }
 \arguments{
-\item{data}{Data set containing the list of nations and the variable that we want to plot}
+\item{data}{Data set containing the list of nations and the variable that we want to plot.}
 
-\item{ColName}{character variable with the name of the variable of interest}
+\item{ColName}{Character variable with the name of the variable of interest.}
 
-\item{CountryName}{character variable with the name of the country names column}
+\item{CountryName}{Character variable with the name of the country names column.}
 
-\item{CountryNameType}{character variable with the coding for `CountryName`. It can be "isoa2" (default), "isoa3", or "name"}
+\item{CountryNameType}{Character variable with the coding for `CountryName.` It can be "isoa2" (default), "isoa3", or "name".}
 
-\item{longitude}{longitude limits. Default is `c(-180, 180)` (whole world)}
+\item{longitude}{Longitude limits. Default is `c(-180, 180)` (whole world).}
 
-\item{latitude}{latitude limits. Default is `c(-90, 90)` (whole world)}
+\item{latitude}{Latitude limits. Default is `c(-90, 90)` (whole world).}
 
-\item{title}{title of the plot. Default is no title}
+\item{title}{Title of the plot. Default is no title.}
 
-\item{legendTitle}{title of the legend. Default is the name of the filling variable}
+\item{legendTitle}{Title of the legend. Default is the name of the filling variable.}
 
 \item{Categories}{categories labels to be plotted in the legend}
 
-\item{annote}{do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`}
+\item{annote}{Do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`.}
 
 \item{div}{Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.}
 

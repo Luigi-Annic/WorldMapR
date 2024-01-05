@@ -26,7 +26,8 @@
 #' @importFrom rnaturalearth ne_countries
 #' @importFrom countrycode countrycode
 #' @importFrom dplyr "%>%" left_join select filter mutate relocate
-#' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_c coord_sf xlab ylab ggtitle aes unit element_text element_blank element_rect geom_text ggsave
+#' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_c coord_sf xlab ylab ggtitle
+#'                     aes unit element_text element_blank element_rect geom_text ggsave
 #' @importFrom sf st_centroid st_coordinates
 #'
 #' @examples

@@ -2,31 +2,17 @@
 #'
 #' @description Plot a world map for categorical data
 #'
-#' @param data Data set containing the list of nations and the variable that we want to plot
-#' @param ColName character variable with the name of the variable of interest
-#' @param CountryName character variable with the name of the country names column
-#' @param CountryNameType character variable with the coding for `CountryName`. It can be "isoa2" (default), "isoa3", or "name"
-#' @param longitude longitude limits. Default is `c(-180, 180)` (whole world)
-#' @param latitude latitude limits. Default is `c(-90, 90)` (whole world)
-#' @param title title of the plot. Default is no title
-#' @param legendTitle title of the legend. Default is the name of the filling variable
+#' @inheritParams worldplot
 #' @param Categories categories labels to be plotted in the legend
-#' @param annote do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`
-#' @param div Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.
-#' @param save Save the plot in a jpg file?
-#' @param filename Only if is save set to TRUE. Name of the file.
-#' @param path Only if save is set to TRUE. Path of the directory where the file is to be saved.
-#' @param width Only if save is set to TRUE. Width of the file.
-#' @param height Only if save is set to TRUE. Height of the file.
-#' @param units Only if save is set to TRUE. Units for width and height. Can be "cm", "mm", "in", or "px".
-#' @param scale Only if save is set to TRUE. Scaling factor for adjusting image dimensions
 #'
 #' @return a map
 #' @export
+#'
 #' @importFrom rnaturalearth ne_countries
 #' @importFrom countrycode countrycode
 #' @importFrom dplyr "%>%" left_join select select filter mutate relocate
-#' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_d coord_sf xlab ylab ggtitle aes unit element_text element_blank element_rect geom_text ggsave
+#' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_d coord_sf xlab ylab ggtitle
+#'                     aes unit element_text element_blank element_rect geom_text ggsave
 #' @importFrom sf st_centroid st_coordinates
 #'
 #' @examples
