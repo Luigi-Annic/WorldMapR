@@ -16,6 +16,7 @@ worldplotCat(
   Categories = levels(factor(map_df$MapFiller)),
   annote = FALSE,
   div = 1,
+  palette_option = "D",
   save = FALSE,
   filename = "worldplot.jpg",
   path = getwd(),
@@ -47,6 +48,8 @@ worldplotCat(
 \item{annote}{Do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`.}
 
 \item{div}{Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.}
+
+\item{palette_option}{Character string indicating the palette to be used. Available options range between "A" and "H".}
 
 \item{save}{Save the plot in a jpg file?}
 

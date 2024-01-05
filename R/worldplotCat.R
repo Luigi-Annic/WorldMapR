@@ -29,7 +29,7 @@ worldplotCat <- function(data,
                          longitude = c(-180, 180) ,latitude = c(-90, 90),
                          title = "", legendTitle = as.character(ColName),
                          Categories = levels(factor(map_df$MapFiller)),
-                         annote = FALSE, div = 1,
+                         annote = FALSE, div = 1, palette_option = "D",
                          save = FALSE, filename = "worldplot.jpg", path = getwd(),
                          width = 20, height = 10, units = "cm", scale = 1) {
 
@@ -70,7 +70,7 @@ worldplotCat <- function(data,
           panel.grid = element_blank(),
           panel.background = element_rect(fill = 'grey95'))+
     labs(fill= legendTitle)+
-    scale_fill_viridis_d(option = 'viridis',begin= 0.3, na.value = 'grey80', direction= 1,
+    scale_fill_viridis_d(option = palette_option, begin= 0.3, na.value = 'grey80', direction= 1,
                          labels= c(Categories, "NA"), na.translate= TRUE)+
     coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW') +
     xlab('')+ ylab('')+

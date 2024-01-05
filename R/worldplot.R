@@ -13,6 +13,7 @@
 #' @param legendTitle Title of the legend. Default is the name of the filling variable.
 #' @param annote Do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`.
 #' @param div Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.
+#' @param palette_option Character string indicating the palette to be used. Available options range between "A" and "H".
 #' @param save Save the plot in a jpg file?
 #' @param filename Only if is save set to TRUE. Name of the file.
 #' @param path Only if save is set to TRUE. Path of the directory where the file is to be saved.
@@ -44,7 +45,7 @@ worldplot <- function(data,
                       ColName, CountryName, CountryNameType = "isoa2", rangeVal,
                       longitude = c(-180, 180) ,latitude = c(-90, 90),
                       title = "", legendTitle = as.character(ColName),
-                      annote = FALSE, div = 1,
+                      annote = FALSE, div = 1, palette_option = "D",
                       save = FALSE, filename = "worldplot.jpg", path = getwd(),
                       width = 20, height = 10, units = "cm", scale = 1) {
 
@@ -85,7 +86,7 @@ worldplot <- function(data,
           panel.grid = element_blank(),
           panel.background = element_rect(fill = 'grey95'))+
     labs(fill= legendTitle)+
-    scale_fill_viridis_c(option='viridis', na.value = 'grey80',direction=1,begin=0.3, limits= rangeVal)+
+    scale_fill_viridis_c(option= palette_option, na.value = 'grey80',direction=1,begin=0.3, limits= rangeVal)+
     coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW') +
     xlab('') + ylab('')+
     ggtitle(title)
