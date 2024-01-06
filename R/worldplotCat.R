@@ -4,6 +4,7 @@
 #'
 #' @inheritParams worldplot
 #' @param Categories categories labels to be plotted in the legend
+#' @param na.as.category Treat NAs as a separate category? If `TRUE`, NA will also appear in the legend as one of the categories
 #'
 #' @return a map
 #' @export
@@ -29,6 +30,7 @@ worldplotCat <- function(data,
                          longitude = c(-180, 180) ,latitude = c(-90, 90),
                          title = "", legendTitle = as.character(ColName),
                          Categories = levels(factor(map_df$MapFiller)),
+                         na.as.category = TRUE,
                          annote = FALSE, div = 1, palette_option = "D",
                          save = FALSE, filename = "worldplot.jpg", path = getwd(),
                          width = 20, height = 10, units = "cm", scale = 1) {
@@ -71,7 +73,7 @@ worldplotCat <- function(data,
           panel.background = element_rect(fill = 'grey95'))+
     labs(fill= legendTitle)+
     scale_fill_viridis_d(option = palette_option, begin= 0.3, na.value = 'grey80', direction= 1,
-                         labels= c(Categories, "NA"), na.translate= TRUE)+
+                         labels= c(Categories, "NA"), na.translate = na.as.category)+
     coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW') +
     xlab('')+ ylab('')+
     ggtitle(title)

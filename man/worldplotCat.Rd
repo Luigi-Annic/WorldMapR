@@ -14,6 +14,7 @@ worldplotCat(
   title = "",
   legendTitle = as.character(ColName),
   Categories = levels(factor(map_df$MapFiller)),
+  na.as.category = TRUE,
   annote = FALSE,
   div = 1,
   palette_option = "D",
@@ -44,6 +45,8 @@ worldplotCat(
 \item{legendTitle}{Title of the legend. Default is the name of the filling variable.}
 
 \item{Categories}{categories labels to be plotted in the legend}
+
+\item{na.as.category}{Treat NAs as a separate category? If `TRUE`, NA will also appear in the legend as one of the categories}
 
 \item{annote}{Do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`.}
 

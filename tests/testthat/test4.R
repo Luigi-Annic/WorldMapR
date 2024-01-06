@@ -9,3 +9,15 @@ worldplot(data = testdata1b,
           latitude = c(35, 72),
           title = "Focus on a section of the map, with annotations",
           legendTitle = "Rand. Vals")
+
+worldplot(data = testdata1c,
+          div = 0.8,
+          ColName = "value",
+          CountryName = "iso_a2",
+          CountryNameType = "isoa2",
+          rangeVal = c(0,100),
+          annote = TRUE,
+          longitude = c(-25, 44),
+          latitude = c(35, 72),
+          title = "Focus on a section of the map, with annotations",
+          legendTitle = "Rand. Vals")
