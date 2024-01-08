@@ -2,10 +2,10 @@
 #'
 #' @description
 #' This function generates a data frame with information about geometries and centroid coordinates of
-#' countries. You can choose whether to keep all the countries or a subset.
+#' countries. You can choose whether to keep all the countries or only a subset.
 #'
-#' @param exclude.iso.na if `TRUE` (default), countries that do not have a iso code are excluded from the table
-#' @param countries.list List of the iso a2 codes of countries that are to be included. By default it is set to `NULL` and all countries are included
+#' @param exclude.iso.na if `TRUE` (default), countries that do not have a ISO 3166 code are excluded from the table
+#' @param countries.list List of the ISO 3166-1 alpha-2 codes of countries that are to be included. By default it is set to `NULL` and all countries are included
 
 #' @return an object of class `data.frame` and `sf`
 #' @export

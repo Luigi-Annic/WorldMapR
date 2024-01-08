@@ -34,7 +34,7 @@ worldplotCat(
 
 \item{CountryName}{Character variable with the name of the country names column.}
 
-\item{CountryNameType}{Character variable with the coding for `CountryName.` It can be "isoa2" (default), "isoa3", or "name".}
+\item{CountryNameType}{Character variable with the coding for 'CountryName'. One of 'isoa2' (default), 'isoa3', or 'name'.}
 
 \item{longitude}{Longitude limits. Default is `c(-180, 180)` (whole world).}
 
@@ -44,11 +44,11 @@ worldplotCat(
 
 \item{legendTitle}{Title of the legend. Default is the name of the filling variable.}
 
-\item{Categories}{categories labels to be plotted in the legend}
+\item{Categories}{categories labels to be plotted in the legend.}
 
-\item{na.as.category}{Treat NAs as a separate category? If `TRUE`, NA will also appear in the legend as one of the categories}
+\item{na.as.category}{Treat NA as a separate category? If `TRUE`, NA will also appear in the legend as one of the categories}
 
-\item{annote}{Do you want to plot country labels (iso2 code) on the map? Default is set to `FALSE`.}
+\item{annote}{Do you want to plot country labels (ISO 3166-1 alpha-2 code) on the map? Default is set to `FALSE`.}
 
 \item{div}{Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.}
 
@@ -64,15 +64,15 @@ worldplotCat(
 
 \item{height}{Only if save is set to TRUE. Height of the file.}
 
-\item{units}{Only if save is set to TRUE. Units for width and height. Can be "cm", "mm", "in", or "px".}
+\item{units}{Only if save is set to TRUE. Units for width and height. Can be 'cm', 'mm', 'in', or 'px'.}
 
-\item{scale}{Only if save is set to TRUE. Scaling factor for adjusting image dimensions}
+\item{scale}{Only if save is set to TRUE. Scaling factor for adjusting image dimensions.}
 }
 \value{
 a map
 }
 \description{
-Plot a world map for categorical data
+Plot a world heat map based on a categorical variable.
 }
 \examples{
 data(testdata1b)

@@ -12,7 +12,7 @@ data(testdata1c)
 }
 \description{
 Data from a random simulation with continuous and categorical data. This data set contains information
-for 237 countries (only countries without a unique iso code are excluded).
+for 237 countries (countries without unique ISO 3166 code are excluded).
 }
 \examples{
 data(testdata1c)
