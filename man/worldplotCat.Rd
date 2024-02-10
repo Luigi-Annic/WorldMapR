@@ -34,11 +34,11 @@ worldplotCat(
 
 \item{CountryName}{Character variable with the name of the country names column.}
 
-\item{CountryNameType}{Character variable with the coding for 'CountryName'. One of 'isoa2' (default), 'isoa3', or 'name'.}
+\item{CountryNameType}{Character variable with the coding for \code{CountryName}. One of \code{isoa2} (default), \code{isoa3}, or \code{name}.}
 
-\item{longitude}{Longitude limits. Default is `c(-180, 180)` (whole world).}
+\item{longitude}{Longitude limits. Default is \code{c(-180, 180)} (whole world).}
 
-\item{latitude}{Latitude limits. Default is `c(-90, 90)` (whole world).}
+\item{latitude}{Latitude limits. Default is \code{c(-90, 90)} (whole world).}
 
 \item{title}{Title of the plot. Default is no title.}
 
@@ -46,9 +46,9 @@ worldplotCat(
 
 \item{Categories}{categories labels to be plotted in the legend.}
 
-\item{na.as.category}{Treat NA as a separate category? If `TRUE`, NA will also appear in the legend as one of the categories}
+\item{na.as.category}{Treat \code{NA} as a separate category? If `\code{TRUE}, NA will also appear in the legend as one of the categories}
 
-\item{annote}{Do you want to plot country labels (ISO 3166-1 alpha-2 code) on the map? Default is set to `FALSE`.}
+\item{annote}{Do you want to plot country labels (ISO 3166-1 alpha-2 code) on the map? Default is set to \code{FALSE}.}
 
 \item{div}{Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.}
 
@@ -56,17 +56,17 @@ worldplotCat(
 
 \item{save}{Save the plot in a jpg file?}
 
-\item{filename}{Only if is save set to TRUE. Name of the file.}
+\item{filename}{Only if is save set to \code{TRUE}. Name of the file.}
 
-\item{path}{Only if save is set to TRUE. Path of the directory where the file is to be saved.}
+\item{path}{Only if save is set to \code{TRUE}. Path of the directory where the file is to be saved.}
 
-\item{width}{Only if save is set to TRUE. Width of the file.}
+\item{width}{Only if save is set to \code{TRUE}. Width of the file.}
 
-\item{height}{Only if save is set to TRUE. Height of the file.}
+\item{height}{Only if save is set to \code{TRUE}. Height of the file.}
 
-\item{units}{Only if save is set to TRUE. Units for width and height. Can be 'cm', 'mm', 'in', or 'px'.}
+\item{units}{Only if save is set to \code{TRUE}. Units for width and height. Can be 'cm', 'mm', 'in', or 'px'.}
 
-\item{scale}{Only if save is set to TRUE. Scaling factor for adjusting image dimensions.}
+\item{scale}{Only if save is set to \code{TRUE}. Scaling factor for adjusting image dimensions.}
 }
 \value{
 a map

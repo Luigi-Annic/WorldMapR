@@ -4,7 +4,7 @@
 #'
 #' @inheritParams worldplot
 #' @param Categories categories labels to be plotted in the legend.
-#' @param na.as.category Treat NA as a separate category? If `TRUE`, NA will also appear in the legend as one of the categories
+#' @param na.as.category Treat \code{NA} as a separate category? If `\code{TRUE}, NA will also appear in the legend as one of the categories
 #'
 #' @return a map
 #' @export
