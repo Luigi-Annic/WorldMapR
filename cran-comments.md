@@ -1,6 +1,9 @@
+Hi,
+Here are the checks I conducted
+
 ## R CMD check results
 
-0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+No notes were found when running the local RMD checks.
 
 ## rhub::check_for_cran() results
 
@@ -47,5 +50,10 @@
   Maintainer: ‘Luigi Annicchiarico <luigi.annic@gmail.com>’
   
   New submission
+  
 
-0 errors ✔ | 0 warnings ✔ | 6 notes ✖
+
+On R development version (2024-02-08 r85876 ucrt), the only note I get is the one regarding
+"checking CRAN incoming feasibility", which is not an issue according to the CRAN maintainer Uwe Ligges (https://stackoverflow.com/questions/23829978/checking-cran-incoming-feasibility-note-maintainer).
+
+No warnings or errors are found in any of the environments I checked.
