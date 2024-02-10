@@ -1,3 +1,3 @@
-# WorldMapR 0.0.1
+# WorldMapR 0.1.0
 
 * Initial CRAN submission.
