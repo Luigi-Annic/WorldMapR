@@ -5,7 +5,7 @@
 \alias{testdata1}
 \title{Simulated data set 1}
 \format{
-An object of class \code{"data.frame"}
+An object of class \code{data.frame}
 }
 \usage{
 data(testdata1)

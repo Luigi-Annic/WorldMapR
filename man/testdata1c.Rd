@@ -5,14 +5,14 @@
 \alias{testdata1c}
 \title{Simulated data set 1c}
 \format{
-An object of class \code{"data.frame"}
+An object of class \code{data.frame}
 }
 \usage{
 data(testdata1c)
 }
 \description{
 Data from a random simulation with continuous and categorical data. This data set contains information
-for 237 countries (countries without unique ISO 3166 code are excluded).
+about 237 countries (countries without unique ISO 3166 code are excluded).
 }
 \examples{
 data(testdata1c)

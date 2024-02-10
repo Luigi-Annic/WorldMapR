@@ -6,7 +6,7 @@
 #'
 #' @usage data(testdata1b)
 #'
-#' @format An object of class \code{"data.frame"}
+#' @format An object of class \code{data.frame}
 #' @keywords datasets
 #'
 #' @examples

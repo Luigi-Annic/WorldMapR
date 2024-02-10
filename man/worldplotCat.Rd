@@ -46,7 +46,7 @@ worldplotCat(
 
 \item{Categories}{categories labels to be plotted in the legend.}
 
-\item{na.as.category}{Treat \code{NA} as a separate category? If `\code{TRUE}, NA will also appear in the legend as one of the categories}
+\item{na.as.category}{Treat \code{NA} as a separate category? If `\code{TRUE}, NA will also appear in the legend as one of the categories.}
 
 \item{annote}{Do you want to plot country labels (ISO 3166-1 alpha-2 code) on the map? Default is set to \code{FALSE}.}
 
