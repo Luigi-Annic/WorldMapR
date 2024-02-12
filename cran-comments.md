@@ -1,3 +1,15 @@
+Hello, I fixed the package after the comment you provided:
+
+- In geometries_data, message() instead of print() is now used
+- In worldplot and worldplotCat, tempdir() is now the default save space
+
+No new notes were generated.
+
+Best regards,
+Luigi
+
+---
+
 Hi,
 Here are the checks I conducted
 
@@ -5,14 +17,13 @@ Here are the checks I conducted
 
 No notes were found when running the local RMD checks.
 
-## rhub::check_for_cran() results
+#### rhub::check_for_cran() results
 
-## Test environments
+### Test environments
 - R-hub windows-x86_64-devel (r-devel)
 - R-hub ubuntu-gcc-release (r-release)
 - R-hub fedora-clang-devel (r-devel)
 
-## R CMD check results
 ❯ On windows-x86_64-devel (r-devel)
   checking CRAN incoming feasibility ... NOTE
   Maintainer: 'Luigi Annicchiarico <luigi.annic@gmail.com>'
