@@ -60,8 +60,8 @@ geometries_data <- function(exclude.iso.na = TRUE,
     notfoundcodes <- countries.list[!(countries.list %in% world_points$iso_a2)]
 
     if (length(notfoundcodes) > 0) {
-      warning("Some iso2 codes you provided (listed above) do not match in the data base: \n")
-      print(notfoundcodes)
+      warning("One or more iso2 codes you provided (listed above) do not match in the data base")
+      message(notfoundcodes)
     }
   }
 
