@@ -32,7 +32,7 @@ worldplotCat <- function(data,
                          Categories = levels(factor(map_df$MapFiller)),
                          na.as.category = TRUE,
                          annote = FALSE, div = 1, palette_option = "D",
-                         save = FALSE, filename = "worldplot.jpg", path = getwd(),
+                         save = FALSE, filename = "worldplot.jpg", path = tempdir(),
                          width = 20, height = 10, units = "cm", scale = 1) {
 
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")

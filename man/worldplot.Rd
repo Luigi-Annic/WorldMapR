@@ -19,7 +19,7 @@ worldplot(
   palette_option = "D",
   save = FALSE,
   filename = "worldplot.jpg",
-  path = getwd(),
+  path = tempdir(),
   width = 20,
   height = 10,
   units = "cm",
