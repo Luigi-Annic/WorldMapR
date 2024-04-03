@@ -14,7 +14,7 @@
 #' @importFrom dplyr "%>%" left_join select select filter mutate relocate
 #' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_d coord_sf xlab ylab ggtitle
 #'                     aes unit element_text element_blank element_rect geom_text ggsave
-#' @importFrom sf st_centroid st_coordinates
+#' @importFrom sf st_centroid st_coordinates st_union
 #'
 #' @examples
 #' data(testdata1b)
@@ -42,6 +42,12 @@ worldplotCat <- function(data,
     mutate(iso_a2 = ifelse(name %in% c("Indian Ocean Ter." , "Ashmore and Cartier Is."), -99, iso_a2_eh),
            iso_a3 = ifelse(name %in% c("Indian Ocean Ter." , "Ashmore and Cartier Is."), -99, iso_a3_eh)) %>%
     select(name, iso_a2, iso_a3, geometry)
+
+  #Cyprus adjustment
+  cyp <- subset(map_df0, name %in% c("Cyprus", "N. Cyprus"))
+  cyp2 <- st_union(cyp[1, "geometry"], cyp[2,"geometry"])
+  map_df0[map_df0$iso_a2 == "CY", "geometry"] <- cyp2
+  # end of cyprus adjustment
 
   simdata <- c()
 
