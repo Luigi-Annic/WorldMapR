@@ -30,6 +30,7 @@
 #' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_c coord_sf xlab ylab ggtitle
 #'                     aes unit element_text element_blank element_rect geom_text ggsave
 #' @importFrom sf st_centroid st_coordinates st_union
+#' @importFrom ggfx with_shadow
 #'
 #' @examples
 #' data(testdata1b)
@@ -103,7 +104,8 @@ worldplot <- function(data,
                                     countries.list = simdata$iso_a2[!is.na(simdata$MapFiller)])
 
     wplot <- wplot +
-      geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2), size= 2/div, color= 'black', fontface= 'bold')
+      with_shadow(geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2), size= 2/div, color= 'white', fontface= 'bold'),
+                  x_offset = 2, y_offset = 2, sigma = 1)
   }
 
   print(wplot)

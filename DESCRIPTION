@@ -18,7 +18,8 @@ Imports:
     rnaturalearth  (>= 1.0.1),
     sf  (>= 1.0-14),
     countrycode (>= 1.5.0),
-    utils (>= 4.3.0)
+    utils (>= 4.3.0),
+    ggfx (>= 1.0.1)
 LazyData: true
 RoxygenNote: 7.2.3
 Suggests: 
