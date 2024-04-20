@@ -20,6 +20,7 @@
 
 geometries_data <- function(exclude.iso.na = TRUE,
                             countries.list = NULL) {
+
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
   map_df0<- world %>%
@@ -30,7 +31,8 @@ geometries_data <- function(exclude.iso.na = TRUE,
 
 
 
-  sepNat <- c('AQ', 'FJ', 'FR', 'IN', 'RU', 'SD', 'SN', 'SS')
+  sepNat <- c('AQ', 'DK' ,'FJ', 'FR', 'GB', 'GR', 'HR' , 'IL' , 'IN', 'NO',
+              'RU', 'SD', 'SN', 'SS')
 
   point_nations<- map_df0  %>%
     filter(!(#is.na(iso_a2) |
@@ -41,8 +43,13 @@ geometries_data <- function(exclude.iso.na = TRUE,
   leftout <- map_df0 %>%
     filter(iso_a2 %in% sepNat) %>%
     arrange(iso_a2) %>%
-    mutate( X = c(0,   178, 2,  79, 40, 30, -14, 31),
-            Y = c(-80, -17, 46, 21, 55, 12,  14, 7)) %>%
+    mutate( X = c(0,   9,  178, 2, -1, 21.5,
+                  17, 35, 79, 10,
+                  40, 30, -14, 31),
+
+            Y = c(-80, 56, -17, 46, 52.5, 39.5,
+                  45.5, 31 ,21, 61,
+                  55, 12,  14, 7)) %>%
     relocate(geometry, .after = Y)
 
 
