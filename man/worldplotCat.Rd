@@ -52,7 +52,7 @@ worldplotCat(
 
 \item{div}{Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.}
 
-\item{palette_option}{Character string indicating the palette to be used. Available options range between "A" and "H".}
+\item{palette_option}{Character string indicating the palette to be used. Available options range between "A" and "H". You can also enter a string with a colour for each category}
 
 \item{save}{Save the plot in a jpg file?}
 

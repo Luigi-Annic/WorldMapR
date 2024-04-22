@@ -5,6 +5,7 @@
 #' @inheritParams worldplot
 #' @param Categories categories labels to be plotted in the legend.
 #' @param na.as.category Treat \code{NA} as a separate category? If `\code{TRUE}, NA will also appear in the legend as one of the categories.
+#' @param palette_option Character string indicating the palette to be used. Available options range between "A" and "H". You can also enter a string with a colour for each category
 #'
 #' @return a map
 #' @export
@@ -13,7 +14,7 @@
 #' @importFrom countrycode countrycode
 #' @importFrom dplyr "%>%" left_join select select filter mutate relocate
 #' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_d coord_sf xlab ylab ggtitle
-#'                     aes unit element_text element_blank element_rect geom_text ggsave
+#'                     aes unit element_text element_blank element_rect geom_text ggsave scale_fill_manual
 #' @importFrom sf st_centroid st_coordinates st_union
 #' @importFrom ggfx with_shadow
 #'
@@ -79,11 +80,19 @@ worldplotCat <- function(data,
           panel.grid = element_blank(),
           panel.background = element_rect(fill = 'grey95'))+
     labs(fill= legendTitle)+
-    scale_fill_viridis_d(option = palette_option, begin= 0.3, na.value = 'grey80', direction= 1,
-                         labels= c(Categories, "NA"), na.translate = na.as.category)+
     coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW') +
     xlab('')+ ylab('')+
     ggtitle(title)
+
+  if (length(palette_option) == 1) {
+    wplot <- wplot +
+      scale_fill_viridis_d(option = palette_option, begin= 0.3, na.value = 'grey80', direction= 1,
+                         labels= c(Categories, "NA"), na.translate = na.as.category)
+  } else {
+    wplot <- wplot +
+      scale_fill_manual(values = palette_option, na.value="grey90", drop= F,
+                        labels = Categories)
+  }
 
   if (annote == TRUE) {
 
