@@ -7,8 +7,9 @@
 #' @param CountryName Character variable with the name of the country names column.
 #' @param CountryNameType Character variable with the coding for \code{CountryName}. One of \code{isoa2} (default), \code{isoa3}, or \code{name}.
 #' @param rangeVal Limit values that are to be defined for the map.
-#' @param longitude Longitude limits. Default is \code{c(-180, 180)} (whole world).
-#' @param latitude Latitude limits. Default is \code{c(-90, 90)} (whole world).
+#' @param longitude Longitude limits. Default is \code{c(-180, 180)} (whole world with crs = 4326).
+#' @param latitude Latitude limits. Default is \code{c(-90, 90)} (whole world with crs = 4326).
+#' @param crs Coordinate reference system. By default the value is equal to NULL, which corresponds to crs = 4326
 #' @param title Title of the plot. Default is no title.
 #' @param legendTitle Title of the legend. Default is the name of the filling variable.
 #' @param annote Do you want to plot country labels (ISO 3166-1 alpha-2 code) on the map? Default is set to \code{FALSE}.
@@ -29,7 +30,7 @@
 #' @importFrom dplyr "%>%" left_join select filter mutate relocate
 #' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_c coord_sf xlab ylab ggtitle
 #'                     aes unit element_text element_blank element_rect geom_text ggsave
-#' @importFrom sf st_centroid st_coordinates st_union
+#' @importFrom sf st_centroid st_coordinates st_union st_as_sf st_transform st_crs
 #' @importFrom ggfx with_shadow
 #'
 #' @examples
@@ -44,7 +45,7 @@
 #'
 worldplot <- function(data,
                       ColName, CountryName, CountryNameType = "isoa2", rangeVal,
-                      longitude = c(-180, 180) ,latitude = c(-90, 90),
+                      longitude = c(-180, 180) ,latitude = c(-90, 90), crs = NULL,
                       title = "", legendTitle = as.character(ColName),
                       annote = FALSE, div = 1, palette_option = "D",
                       save = FALSE, filename = "worldplot.jpg", path = tempdir(),
@@ -98,10 +99,38 @@ worldplot <- function(data,
     xlab('') + ylab('')+
     ggtitle(title)
 
+  if (!is.null(crs)) {
+    wplot <- wplot +
+      coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW',
+               crs = sf::st_crs(crs))
+  }
+
   if (annote == TRUE) {
 
     world_points <- geometries_data(exclude.iso.na = T,
                                     countries.list = simdata$iso_a2[!is.na(simdata$MapFiller)])
+
+    if (!is.null(crs)) {
+
+      d <- data.frame(iso_a2 = world_points$iso_a2,
+                      X = world_points$X,
+                      Y =world_points$Y)
+
+      d2 <- sf::st_as_sf(d, coords=c("X","Y"), crs="EPSG:4326" )
+
+      d3 <- sf::st_transform(d2, crs = sf::st_crs(crs))
+
+      d4 <- data.frame(iso_a2 = d3$iso_a2,
+                       X = rep(NA, nrow(d3)),
+                       Y = rep(NA, nrow(d3)))
+
+      for (i in 1: nrow(d3)) {
+        d4[i,c("X","Y")] <- d3$geometry[[i]]
+      }
+
+      world_points <- d4
+
+    }
 
     wplot <- wplot +
       with_shadow(geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2), size= 2/div, color= 'white', fontface= 'bold'),

@@ -36,9 +36,9 @@ worldplotCat(
 
 \item{CountryNameType}{Character variable with the coding for \code{CountryName}. One of \code{isoa2} (default), \code{isoa3}, or \code{name}.}
 
-\item{longitude}{Longitude limits. Default is \code{c(-180, 180)} (whole world).}
+\item{longitude}{Longitude limits. Default is \code{c(-180, 180)} (whole world with crs = 4326).}
 
-\item{latitude}{Latitude limits. Default is \code{c(-90, 90)} (whole world).}
+\item{latitude}{Latitude limits. Default is \code{c(-90, 90)} (whole world with crs = 4326).}
 
 \item{title}{Title of the plot. Default is no title.}
 
