@@ -11,6 +11,7 @@ worldplotCat(
   CountryNameType,
   longitude = c(-180, 180),
   latitude = c(-90, 90),
+  crs = NULL,
   title = "",
   legendTitle = as.character(ColName),
   Categories = levels(factor(map_df$MapFiller)),
@@ -39,6 +40,8 @@ worldplotCat(
 \item{longitude}{Longitude limits. Default is \code{c(-180, 180)} (whole world with crs = 4326).}
 
 \item{latitude}{Latitude limits. Default is \code{c(-90, 90)} (whole world with crs = 4326).}
+
+\item{crs}{Coordinate reference system. By default the value is equal to NULL, which corresponds to crs = 4326}
 
 \item{title}{Title of the plot. Default is no title.}
 
