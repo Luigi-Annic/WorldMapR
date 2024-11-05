@@ -102,7 +102,7 @@ worldplot <- function(data,
   if (!is.null(crs)) {
     wplot <- wplot +
       coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW',
-               crs = sf::st_crs(crs))
+               crs = st_crs(crs))
   }
 
   if (annote == TRUE) {
@@ -116,9 +116,9 @@ worldplot <- function(data,
                       X = world_points$X,
                       Y =world_points$Y)
 
-      d2 <- sf::st_as_sf(d, coords=c("X","Y"), crs="EPSG:4326" )
+      d2 <- st_as_sf(d, coords=c("X","Y"), crs="EPSG:4326" )
 
-      d3 <- sf::st_transform(d2, crs = sf::st_crs(crs))
+      d3 <- st_transform(d2, crs = st_crs(crs))
 
       d4 <- data.frame(iso_a2 = d3$iso_a2,
                        X = rep(NA, nrow(d3)),
