@@ -1,11 +1,15 @@
 ---
-title: "WorldMapR_Vignette"
-output: rmarkdown::html_vignette
+title: "WorldMapR"
+output: pdf_document
+author: Luigi Annicchiarico
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 vignette: >
   %\VignetteIndexEntry{WorldMapR_Vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+This package has the scope to create maps of the world or sub regions based on user-defined coordinates, filling them based on the provided data.
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -14,6 +18,122 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, warning = FALSE}
 library(WorldMapR)
 ```
+
+## Data
+
+For this demonstration, we will use a database with a randomly-generated numeric variable associated to each country.
+
+```{r}
+head(WorldMapR::testdata1)
+summary(testdata1)
+```
+
+\newpage
+
+## Displaying a world map for continuous data
+
+As a first step, we may want to plot a map of the world, displaying our data.
+
+We can do this by using the function `worldplot()`.
+At its bare minimum, this function takes the name of the dataframe, the name of the column with the values to be plotted, the name of the column with the country names, and the range of the values that we want to be shown.
+
+```{r}
+worldplot(data = testdata1,
+          ColName = "IntVal",
+          CountryName = "countrycode",
+          rangeVal = c(0,100))
+
+```
+
+By default, the function expects the country nams column to be of type iso-a2; however, it is possible to specify it differently; for example, the following code provides the same result. \
+Note that it is advisable to use iso-a2 codes, as country names might be ambiguous in some cases.
+
+```{r, eval=FALSE}
+worldplot(data = testdata1,
+          ColName = "IntVal",
+          CountryName = "name",
+          CountryNameType = "name",
+          rangeVal = c(0,100))
+```
+
+\newpage
+
+We can focus on a subregion of our interest, by specifying a range for latitude and longitude
+
+```{r}
+worldplot(data = testdata1,
+          ColName = "IntVal",
+          CountryName = "countrycode",
+          rangeVal = c(0,100),
+          latitude = c(-40,40), longitude = c(-17,50))
+```
+
+\newpage
+
+Moreover, it is possible to add labels to identify each country present in the database (countries without correspondences in the provided data set or with missing value are not considered). To do this, it is sufficient to add the option `annote = TRUE`:
+
+```{r}
+worldplot(data = testdata1,
+          ColName = "IntVal",
+          CountryName = "countrycode",
+          rangeVal = c(0,100),
+          latitude = c(-40,40), longitude = c(-17,50),
+          annote = TRUE)
+```
+
+\newpage
+
+palette_option allows to change the palette, by specifying a letter between "A" and "H". These are different color maps from the `scale_fill_viridis()` palette:
+
+```{r}
+worldplot(data = testdata1,
+          ColName = "IntVal",
+          CountryName = "countrycode",
+          rangeVal = c(0,100),
+          latitude = c(-40,40), longitude = c(-17,50),
+          annote = TRUE,
+          palette_option = "A")
+```
+
+\newpage
+
+## World map for categorical data
+
+The function `worldmapCat()` deals with categorical data.
+
+The syntax is similar to the previous, with some minor changes.
+
+
+```{r}
+worldplotCat(data = testdata1b,
+             ColName = "VCat",
+             CountryName = "Cshort",
+             CountryNameType = "isoa2",
+             annote = FALSE)
+```
+
+\newpage
+
+The user is allowed to define the color palette manually: it is simply required to define a colour for each category (plus eventually one for missing data), and provide it in `palette_option`.
+
+```{r}
+
+colours <- c("#C3E2EA", "#58C0D0", "#256C91")
+
+worldplotCat(data = testdata1c,
+             ColName = "ValCat",
+             CountryName = "iso_a2",
+             CountryNameType = "isoa2",
+             palette_option = colours ,
+             Categories = c("Low", "Average", "High"),
+             legendTitle = "CAT",
+             latitude = c(30,70), longitude = c(-15,40),
+             annote = TRUE)
+```
+
+\newpage
+
+## CRS 
