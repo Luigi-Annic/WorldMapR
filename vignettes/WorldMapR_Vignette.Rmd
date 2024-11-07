@@ -7,6 +7,7 @@ vignette: >
   %\VignetteIndexEntry{WorldMapR}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  
 ---
 
 This package has the scope to create maps of the world or sub regions based on user-defined coordinates, filling them based on the provided data.
@@ -40,7 +41,7 @@ As a first step, we may want to plot a map of the world, displaying our data.
 We can do this by using the function `worldplot()`.
 At its bare minimum, this function takes the name of the dataframe, the name of the column with the values to be plotted, the name of the column with the country names, and the range of the values that we want to be shown.
 
-```{r}
+```{r, fig.width=7, fig.height=5, fig.retina=3}
 worldplot(data = testdata1,
           ColName = "IntVal",
           CountryName = "countrycode",
@@ -63,7 +64,7 @@ worldplot(data = testdata1,
 
 We can focus on a subregion of our interest, by specifying a range for latitude and longitude
 
-```{r}
+```{r,fig.width=7, fig.height=5}
 worldplot(data = testdata1,
           ColName = "IntVal",
           CountryName = "countrycode",
@@ -75,7 +76,7 @@ worldplot(data = testdata1,
 
 Moreover, it is possible to add labels to identify each country present in the database (countries without correspondences in the provided data set or with missing value are not considered). To do this, it is sufficient to add the option `annote = TRUE`:
 
-```{r}
+```{r,fig.width=7, fig.height=5, fig.retina=3}
 worldplot(data = testdata1,
           ColName = "IntVal",
           CountryName = "countrycode",
