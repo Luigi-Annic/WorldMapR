@@ -1,8 +1,12 @@
 ---
 title: "WorldMapR"
-output: pdf_document
+output: rmarkdown::html_vignette
 author: Luigi Annicchiarico
 date: "`r format(Sys.time(), '%d %B, %Y')`"
+vignette: >
+  %\VignetteIndexEntry{WorldMapR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 This package has the scope to create maps of the world or sub regions based on user-defined coordinates, filling them based on the provided data.
