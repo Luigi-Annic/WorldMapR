@@ -134,14 +134,16 @@ worldplotCat <- function(data,
 
   print(wplot)
 
-  if (save == TRUE) {
-    ggplot2::ggsave(filename = filename,
-                    path = path,
-                    width = width,
-                    height = height,
-                    units = units,
-                    dpi = "retina",
-                    scale = scale)
-  }
+  return(wplot)
+
+  #if (save == TRUE) {
+  #  ggplot2::ggsave(filename = filename,
+  #                  path = path,
+  #                  width = width,
+  #                  height = height,
+  #                  units = units,
+  #                  dpi = "retina",
+  #                  scale = scale)
+  #}
 
 }
