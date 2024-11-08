@@ -25,11 +25,21 @@ library(WorldMapR)
 
 ## Data
 
-For this demonstration, we will use a database with a randomly-generated numeric variable associated to each country.
+For this demonstration, we will use three different databases with a randomly-generated numeric variable associated to each country.
+
+- testdata1 has 90 rows with only a numeric variable (with some missing values)
+- testdata1b has 46 rows, with one numeric and one categorical variable (with some missing values) 
+- testdata1c has 237 rows, with one numeric and one categorical variable (without any missing values)
 
 ```{r}
 head(WorldMapR::testdata1)
-summary(testdata1)
+dim(testdata1)
+
+head(testdata1b)
+dim(testdata1b)
+
+head(testdata1c)
+dim(testdata1c)
 ```
 
 \newpage
