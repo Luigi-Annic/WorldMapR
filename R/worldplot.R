@@ -15,13 +15,13 @@
 #' @param annote Do you want to plot country labels (ISO 3166-1 alpha-2 code) on the map? Default is set to \code{FALSE}.
 #' @param div Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.
 #' @param palette_option Character string indicating the palette to be used. Available options range between "A" and "H".
-#' @param save Save the plot in a jpg file?
-#' @param filename Only if is save set to \code{TRUE}. Name of the file.
-#' @param path Only if save is set to \code{TRUE}. Path of the directory where the file is to be saved.
-#' @param width Only if save is set to \code{TRUE}. Width of the file.
-#' @param height Only if save is set to \code{TRUE}. Height of the file.
-#' @param units Only if save is set to \code{TRUE}. Units for width and height. Can be 'cm', 'mm', 'in', or 'px'.
-#' @param scale Only if save is set to \code{TRUE}. Scaling factor for adjusting image dimensions.
+#' @param save Removed since v 0.1.3. Save the plot in a jpg file?
+#' @param filename Removed since v 0.1.3. Only if is save set to \code{TRUE}. Name of the file.
+#' @param path Removed since v 0.1.3. Only if save is set to \code{TRUE}. Path of the directory where the file is to be saved.
+#' @param width Removed since v 0.1.3. Only if save is set to \code{TRUE}. Width of the file.
+#' @param height Removed since v 0.1.3. Only if save is set to \code{TRUE}. Height of the file.
+#' @param units Removed since v 0.1.3. Only if save is set to \code{TRUE}. Units for width and height. Can be 'cm', 'mm', 'in', or 'px'.
+#' @param scale Removed since v 0.1.3. Only if save is set to \code{TRUE}. Scaling factor for adjusting image dimensions.
 #'
 #' @return a map
 #' @export
