@@ -2,7 +2,7 @@
 
 * Added option to modify the coordinate reference system
 * Created vignette
-* Removed save functionality within the functions, as the plot object can be saved with various external methods
+* Removed save functionality within the functions, as the plot object can be saved with various external methods now
 
 # WorldMapR 0.1.1
 
