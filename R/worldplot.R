@@ -5,23 +5,16 @@
 #' @param data Data set containing the list of nations and the variable that we want to plot.
 #' @param ColName Character variable with the name of the variable of interest.
 #' @param CountryName Character variable with the name of the country names column.
-#' @param CountryNameType Character variable with the coding for \code{CountryName}. One of \code{isoa2} (default), \code{isoa3}, or \code{name}.
+#' @param CountryNameType Character variable with the coding for \code{CountryName}. One of \code{isoa2} (default, standing for ISO 3166-1 alpha-2 code), \code{isoa3}, or \code{name}.
 #' @param rangeVal Limit values that are to be defined for the map.
-#' @param longitude Longitude limits. Default is \code{c(-180, 180)} (whole world with crs = 4326).
-#' @param latitude Latitude limits. Default is \code{c(-90, 90)} (whole world with crs = 4326).
-#' @param crs Coordinate reference system. By default the value is equal to NULL, which corresponds to crs = 4326
+#' @param longitude Longitude limits. Default is \code{c(-180, 180)} (whole world with crs as EPSG::4326).
+#' @param latitude Latitude limits. Default is \code{c(-90, 90)} (whole world with crs as EPSG::4326).
+#' @param crs Coordinate reference system (EPSG). By default the value is equal to NULL, which corresponds to EPSG::4326 (WGS84)
 #' @param title Title of the plot. Default is no title.
 #' @param legendTitle Title of the legend. Default is the name of the filling variable.
 #' @param annote Do you want to plot country labels (ISO 3166-1 alpha-2 code) on the map? Default is set to \code{FALSE}.
 #' @param div Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.
 #' @param palette_option Character string indicating the palette to be used. Available options range between "A" and "H".
-#' @param save Removed since v 0.1.3. Save the plot in a jpg file?
-#' @param filename Removed since v 0.1.3. Only if is save set to \code{TRUE}. Name of the file.
-#' @param path Removed since v 0.1.3. Only if save is set to \code{TRUE}. Path of the directory where the file is to be saved.
-#' @param width Removed since v 0.1.3. Only if save is set to \code{TRUE}. Width of the file.
-#' @param height Removed since v 0.1.3. Only if save is set to \code{TRUE}. Height of the file.
-#' @param units Removed since v 0.1.3. Only if save is set to \code{TRUE}. Units for width and height. Can be 'cm', 'mm', 'in', or 'px'.
-#' @param scale Removed since v 0.1.3. Only if save is set to \code{TRUE}. Scaling factor for adjusting image dimensions.
 #'
 #' @return a map
 #' @export
@@ -47,9 +40,10 @@ worldplot <- function(data,
                       ColName, CountryName, CountryNameType = "isoa2", rangeVal,
                       longitude = c(-180, 180) ,latitude = c(-90, 90), crs = NULL,
                       title = "", legendTitle = as.character(ColName),
-                      annote = FALSE, div = 1, palette_option = "D",
-                      save = FALSE, filename = "worldplot.jpg", path = tempdir(),
-                      width = 20, height = 10, units = "cm", scale = 1) {
+                      annote = FALSE, div = 1, palette_option = "D" #,
+                     # save = FALSE, filename = "worldplot.jpg", path = tempdir(),
+                     # width = 20, height = 10, units = "cm", scale = 1
+                     ) {
 
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
