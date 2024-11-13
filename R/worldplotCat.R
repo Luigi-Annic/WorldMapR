@@ -14,7 +14,7 @@
 #' @importFrom countrycode countrycode
 #' @importFrom dplyr "%>%" left_join select select filter mutate relocate
 #' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_d coord_sf xlab ylab ggtitle
-#'                     aes unit element_text element_blank element_rect geom_text ggsave scale_fill_manual
+#'                     aes unit element_text element_blank element_rect geom_text scale_fill_manual
 #' @importFrom sf st_centroid st_coordinates st_union st_as_sf st_transform st_crs
 #' @importFrom ggfx with_shadow
 #'
@@ -29,14 +29,11 @@
 #'
 worldplotCat <- function(data,
                          ColName, CountryName, CountryNameType,
-                         longitude = c(-180, 180) ,latitude = c(-90, 90), crs = NULL,
+                         longitude = c(-180, 180) ,latitude = c(-90, 90), crs = 4326,
                          title = "", legendTitle = as.character(ColName),
                          Categories = levels(factor(map_df$MapFiller)),
                          na.as.category = TRUE,
-                         annote = FALSE, div = 1, palette_option = "D" #,
-                         #save = FALSE, filename = "worldplot.jpg", path = tempdir(),
-                         #width = 20, height = 10, units = "cm", scale = 1
-                         ) {
+                         annote = FALSE, div = 1, palette_option = "D") {
 
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
@@ -95,7 +92,7 @@ worldplotCat <- function(data,
                         labels = Categories, na.translate = na.as.category)
   }
 
-  if (!is.null(crs)) {
+  if (crs != 4326) {
     wplot <- wplot +
       coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW',
                crs = st_crs(crs))
@@ -106,7 +103,7 @@ worldplotCat <- function(data,
     world_points <- geometries_data(exclude.iso.na = T,
                                     countries.list = simdata$iso_a2[!is.na(simdata$MapFiller)])
 
-    if (!is.null(crs)) {
+    if (crs != 4326) {
 
       d <- data.frame(iso_a2 = world_points$iso_a2,
                       X = world_points$X,
@@ -136,15 +133,5 @@ worldplotCat <- function(data,
   print(wplot)
 
   return(wplot)
-
-  #if (save == TRUE) {
-  #  ggplot2::ggsave(filename = filename,
-  #                  path = path,
-  #                  width = width,
-  #                  height = height,
-  #                  units = units,
-  #                  dpi = "retina",
-  #                  scale = scale)
-  #}
 
 }

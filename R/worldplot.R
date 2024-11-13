@@ -9,7 +9,7 @@
 #' @param rangeVal Limit values that are to be defined for the map.
 #' @param longitude Longitude limits. Default is \code{c(-180, 180)} (whole world with crs as EPSG::4326).
 #' @param latitude Latitude limits. Default is \code{c(-90, 90)} (whole world with crs as EPSG::4326).
-#' @param crs Coordinate reference system (EPSG). By default the value is equal to NULL, which corresponds to EPSG::4326 (WGS84)
+#' @param crs Coordinate reference system (EPSG). By default the value is 4326, which corresponds to EPSG::4326 (WGS84)
 #' @param title Title of the plot. Default is no title.
 #' @param legendTitle Title of the legend. Default is the name of the filling variable.
 #' @param annote Do you want to plot country labels (ISO 3166-1 alpha-2 code) on the map? Default is set to \code{FALSE}.
@@ -22,7 +22,7 @@
 #' @importFrom countrycode countrycode
 #' @importFrom dplyr "%>%" left_join select filter mutate relocate
 #' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_c coord_sf xlab ylab ggtitle
-#'                     aes unit element_text element_blank element_rect geom_text ggsave
+#'                     aes unit element_text element_blank element_rect geom_text
 #' @importFrom sf st_centroid st_coordinates st_union st_as_sf st_transform st_crs
 #' @importFrom ggfx with_shadow
 #'
@@ -38,12 +38,9 @@
 #'
 worldplot <- function(data,
                       ColName, CountryName, CountryNameType = "isoa2", rangeVal,
-                      longitude = c(-180, 180) ,latitude = c(-90, 90), crs = NULL,
+                      longitude = c(-180, 180) ,latitude = c(-90, 90), crs = 4326,
                       title = "", legendTitle = as.character(ColName),
-                      annote = FALSE, div = 1, palette_option = "D" #,
-                     # save = FALSE, filename = "worldplot.jpg", path = tempdir(),
-                     # width = 20, height = 10, units = "cm", scale = 1
-                     ) {
+                      annote = FALSE, div = 1, palette_option = "D") {
 
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
@@ -93,7 +90,7 @@ worldplot <- function(data,
     xlab('') + ylab('')+
     ggtitle(title)
 
-  if (!is.null(crs)) {
+  if (crs != 4326) {
     wplot <- wplot +
       coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW',
                crs = st_crs(crs))
@@ -104,7 +101,7 @@ worldplot <- function(data,
     world_points <- geometries_data(exclude.iso.na = T,
                                     countries.list = simdata$iso_a2[!is.na(simdata$MapFiller)])
 
-    if (!is.null(crs)) {
+    if (crs != 4326) {
 
       d <- data.frame(iso_a2 = world_points$iso_a2,
                       X = world_points$X,
@@ -132,16 +129,6 @@ worldplot <- function(data,
   }
 
   print(wplot)
-
-  #if (save == TRUE) {
-  #  ggplot2::ggsave(filename = filename,
-  #                 path = path,
-  #                 width = width,
-  #                 height = height,
-  #                 units = units,
-  #                dpi = "retina",
-  #                 scale = scale)
-  #}
 
   return(wplot)
 
