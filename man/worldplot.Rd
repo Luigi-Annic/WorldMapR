@@ -12,7 +12,7 @@ worldplot(
   rangeVal,
   longitude = c(-180, 180),
   latitude = c(-90, 90),
-  crs = NULL,
+  crs = 4326,
   title = "",
   legendTitle = as.character(ColName),
   annote = FALSE,
@@ -35,7 +35,7 @@ worldplot(
 
 \item{latitude}{Latitude limits. Default is \code{c(-90, 90)} (whole world with crs as EPSG::4326).}
 
-\item{crs}{Coordinate reference system (EPSG). By default the value is equal to NULL, which corresponds to EPSG::4326 (WGS84)}
+\item{crs}{Coordinate reference system (EPSG). By default the value is 4326, which corresponds to EPSG::4326 (WGS84)}
 
 \item{title}{Title of the plot. Default is no title.}
 
