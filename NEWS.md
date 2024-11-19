@@ -1,3 +1,8 @@
+# WorldMapR 0.1.4
+
+* Corrected a bug which caused the figures to be plotted twice
+* Default option for range value added
+
 # WorldMapR 0.1.3
 
 * Added option to modify the coordinate reference system (crs argument)
