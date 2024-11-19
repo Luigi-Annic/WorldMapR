@@ -75,6 +75,19 @@ worldplot <- function(data,
   simdata <- as.data.frame(simdata)
 
   map_df <- left_join(map_df0, simdata, by = "iso_a2")
+  
+  ## RangeVal try
+  
+  if (missing(rangeVal)) {
+    message("No Range Value provided. A default is provided.
+             If this is not optimal specify the argument rangeVal")
+    
+    #rangeVal = c(floor(min(map_df$MapFiller, na.rm = T)),   alternative version
+    #             ceiling(max(map_df$MapFiller, na.rm = T)))
+    rangeVal = c(range(map_df$MapFiller, na.rm = TRUE))
+  }
+  
+  ##
 
   wplot <- ggplot(data= map_df) +
     geom_sf(color= 'black', aes(fill= MapFiller)) +
@@ -128,7 +141,7 @@ worldplot <- function(data,
                   x_offset = 2, y_offset = 2, sigma = 1)
   }
 
-  print(wplot)
+  # print(wplot)
 
   return(wplot)
 
