@@ -160,7 +160,7 @@ Keep in mind that, if you change the reference system, you will also need to red
 
 Notably, the function automatically updates the coordinates of the labels when a different `crs` is defined, meaning that these values might help to find the coordinates you want to show (AVAILABLE IN A FUTURE UPDATE, this information can be extracted only by unfolding the function right now).
 
-```{r,fig.width=7, fig.height=5, fig.retina=3, eval=F}
+```{r,fig.width=7, fig.height=5, fig.retina=3, eval=TRUE}
 worldplotCat(data = testdata1c,
              ColName = "ValCat",
              CountryName = "iso_a2",
