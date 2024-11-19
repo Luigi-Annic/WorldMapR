@@ -130,7 +130,7 @@ worldplotCat <- function(data,
                   x_offset = 2, y_offset = 2, sigma = 1)
   }
 
-  print(wplot)
+  # print(wplot)
 
   return(wplot)
 
