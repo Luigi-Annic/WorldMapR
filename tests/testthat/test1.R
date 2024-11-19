@@ -9,7 +9,6 @@ worldplot(data = testdata1c,
           ColName = "value",
           CountryName = "iso_a2",
           CountryNameType = "isoa2",
-          rangeVal = c(0,100),
           latitude = c(30,70), longitude = c(-15,40))
 
 worldplot(data = testdata1c,
