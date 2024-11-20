@@ -33,7 +33,8 @@ worldplotCat <- function(data,
                          title = "", legendTitle = as.character(ColName),
                          Categories = levels(factor(map_df$MapFiller)),
                          na.as.category = TRUE,
-                         annote = FALSE, div = 1, palette_option = "D") {
+                         annote = FALSE, div = 1, palette_option = "D",
+                         na_colour = "grey80") {
 
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
@@ -84,11 +85,11 @@ worldplotCat <- function(data,
 
   if (length(palette_option) == 1) {
     wplot <- wplot +
-      scale_fill_viridis_d(option = palette_option, begin= 0.3, na.value = 'grey80', direction= 1,
+      scale_fill_viridis_d(option = palette_option, begin= 0.3, na.value = na_colour, direction= 1,
                          labels= c(Categories, "NA"), na.translate = na.as.category)
   } else {
     wplot <- wplot +
-      scale_fill_manual(values = palette_option, na.value="grey90", drop= F,
+      scale_fill_manual(values = palette_option, na.value= na_colour, drop= F,
                         labels = Categories, na.translate = na.as.category)
   }
 

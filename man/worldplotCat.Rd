@@ -18,7 +18,8 @@ worldplotCat(
   na.as.category = TRUE,
   annote = FALSE,
   div = 1,
-  palette_option = "D"
+  palette_option = "D",
+  na_colour = "grey80"
 )
 }
 \arguments{
@@ -49,6 +50,8 @@ worldplotCat(
 \item{div}{Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.}
 
 \item{palette_option}{Character string indicating the palette to be used. Available options range between "A" and "H". You can also enter a string with a colour for each category}
+
+\item{na_colour}{The colour to be used for countries with missing information. Default is grey80}
 }
 \value{
 a map
