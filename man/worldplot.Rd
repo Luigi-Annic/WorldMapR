@@ -17,7 +17,8 @@ worldplot(
   legendTitle = as.character(ColName),
   annote = FALSE,
   div = 1,
-  palette_option = "D"
+  palette_option = "D",
+  na_colour = "grey80"
 )
 }
 \arguments{
@@ -29,7 +30,7 @@ worldplot(
 
 \item{CountryNameType}{Character variable with the coding for \code{CountryName}. One of \code{isoa2} (default, standing for ISO 3166-1 alpha-2 code), \code{isoa3}, or \code{name}.}
 
-\item{rangeVal}{Limit values that are to be defined for the map.}
+\item{rangeVal}{Limit values (minimum and maximum) that are to be defined for the map. If not specified, the minimum and maximum are taken, and a message is displayed.}
 
 \item{longitude}{Longitude limits. Default is \code{c(-180, 180)} (whole world with crs as EPSG::4326).}
 
@@ -46,6 +47,8 @@ worldplot(
 \item{div}{Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.}
 
 \item{palette_option}{Character string indicating the palette to be used. Available options range between "A" and "H".}
+
+\item{na_colour}{The colour to be used for countries with missing information. Default is grey80}
 }
 \value{
 a map
