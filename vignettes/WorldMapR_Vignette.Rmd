@@ -51,7 +51,7 @@ All these datasets have two variables defining the country for demonstrative pur
 As a first step, we may want to plot a map of the world, displaying our data.
 
 We can do this by using the function `worldplot()`.
-At its bare minimum, this function takes the name of the dataframe, the name of the column with the values to be plotted, the name of the column with the country names, and the range of the values that we want to be shown.
+At its bare minimum, this function takes the name of the dataframe, the name of the column with the values to be plotted, the name of the column with the country names. We also add the range of the values that we want to be shown (these should usually be near to the minimum and the maximum observation that we want to plot).
 
 ```{r, fig.width=7, fig.height=5, fig.retina=3}
 worldplot(data = testdata1,
@@ -99,7 +99,10 @@ worldplot(data = testdata1,
 
 \newpage
 
-`palette_option` allows to change the colour palette, by specifying a letter between "A" and "H". These are different color maps from the `scale_fill_viridis()` palette (in a future release, the user will be allowed to define its own palette):
+`palette_option` allows to change the colour palette.
+
+- By specifying a letter between "A" and "H", we obtain different palettes from the `scale_fill_viridis()` palette
+- By specifying two or more colours, we obtain a user defined gradient based on the colours we have defined:
 
 ```{r,fig.width=7, fig.height=5, fig.retina=3}
 worldplot(data = testdata1,
@@ -111,6 +114,15 @@ worldplot(data = testdata1,
           palette_option = "A")
 ```
 
+```{r,fig.width=7, fig.height=5, fig.retina=3}
+worldplot(data = testdata1,
+          ColName = "IntVal",
+          CountryName = "countrycode",
+          rangeVal = c(0,100),
+          latitude = c(-40,40), longitude = c(-17,50),
+          annote = TRUE,
+          palette_option = c("#00A600", "#63C600", "#E6E600", "#E9BD3A", "#ECB176", "#EFC2B3"))
+```
 \newpage
 
 # World map for categorical data
