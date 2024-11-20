@@ -2,6 +2,8 @@
 
 * Corrected a bug which caused the figures to be plotted twice
 * Default option for range value added
+* Possibility to specify a user-defined gradient continuous variables added
+* Option to modify the color for missing countries added
 
 # WorldMapR 0.1.3
 
