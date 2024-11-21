@@ -19,7 +19,8 @@ worldplotCat(
   annote = FALSE,
   div = 1,
   palette_option = "D",
-  na_colour = "grey80"
+  na_colour = "grey80",
+  transform_limits = TRUE
 )
 }
 \arguments{
@@ -52,6 +53,10 @@ worldplotCat(
 \item{palette_option}{Character string indicating the palette to be used. Available options range between "A" and "H". You can also enter a string with a colour for each category}
 
 \item{na_colour}{The colour to be used for countries with missing information. Default is grey80}
+
+\item{transform_limits}{Only if crs is specified and different from 4326. If TRUE (the default) the program expects to receive values of longitude and latitude as in EPSG 4326,
+(i.e., within -180, +180 for longitude and within -90, +90 for latitude) and automatically updates to the new crs.
+Set to FALSE if you want to define longitude and latitude limits based on the new crs}
 }
 \value{
 a map

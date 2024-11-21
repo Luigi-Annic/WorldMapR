@@ -16,6 +16,9 @@
 #' @param div Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.
 #' @param palette_option Character string indicating the palette to be used. Available options range between "A" and "H".
 #' @param na_colour The colour to be used for countries with missing information. Default is grey80
+#' @param transform_limits Only if crs is specified and different from 4326. If TRUE (the default) the program expects to receive values of longitude and latitude as in EPSG 4326,
+#'                          (i.e., within -180, +180 for longitude and within -90, +90 for latitude) and automatically updates to the new crs.
+#'                          Set to FALSE if you want to define longitude and latitude limits based on the new crs
 #'
 #' @return a map
 #' @export
@@ -24,7 +27,7 @@
 #' @importFrom dplyr "%>%" left_join select filter mutate relocate
 #' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_c scale_fill_gradientn coord_sf xlab ylab ggtitle
 #'                     aes unit element_text element_blank element_rect geom_text
-#' @importFrom sf st_centroid st_coordinates st_union st_as_sf st_transform st_crs
+#' @importFrom sf st_centroid st_coordinates st_union st_as_sf st_transform st_crs st_bbox
 #' @importFrom ggfx with_shadow
 #'
 #' @examples
@@ -42,7 +45,7 @@ worldplot <- function(data,
                       longitude = c(-180, 180) ,latitude = c(-90, 90), crs = 4326,
                       title = "", legendTitle = as.character(ColName),
                       annote = FALSE, div = 1, palette_option = "D",
-                      na_colour = "grey80") {
+                      na_colour = "grey80", transform_limits = TRUE) {
 
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
@@ -113,6 +116,18 @@ worldplot <- function(data,
   
 
   if (crs != 4326) {
+    
+    if (transform_limits == TRUE) {
+    #Correct longitude and latitude values
+    lim1 <- data.frame(X = longitude, Y = latitude)
+    lim2 <- st_as_sf(lim1, coords=c("X","Y"), crs="EPSG:4326" )
+    lim3 <- st_transform(lim2, crs = st_crs(crs))
+    
+    longitude <- c(st_bbox(lim3)$xmin, st_bbox(lim3)$xmax)
+    latitude <-  c(st_bbox(lim3)$ymin, st_bbox(lim3)$ymax)
+    ##
+    }
+    
     wplot <- wplot +
       coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW',
                crs = st_crs(crs))
