@@ -8,7 +8,6 @@ vignette: >
   %\VignetteIndexEntry{WorldMapR}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  
 ---
 
 The aim of this package is to create maps of the world or sub regions based on user-defined coordinates, filling them based on the provided data. This vignette will highlight its main features.
@@ -74,7 +73,9 @@ worldplot(data = testdata1,
 
 \newpage
 
-We can focus on a subregion of our interest, by specifying a range for `latitude` and `longitude` arguments
+## Focusing on regions
+
+We can focus on a region of our interest, by specifying a range for `latitude` and `longitude` arguments
 
 ```{r,fig.width=7, fig.height=5, fig.retina=3}
 worldplot(data = testdata1,
@@ -86,7 +87,9 @@ worldplot(data = testdata1,
 
 \newpage
 
-Moreover, it is possible to add labels to identify each country present in the database (countries without correspondences in the provided data set or with missing value are not considered). To do this, it is sufficient to add the option `annote = TRUE`:
+## Adding country labels
+
+It is also possible to add labels to identify each country present in the database (countries without correspondences in the provided data set or with missing value are not considered). To do this, it is sufficient to add the option `annote = TRUE`:
 
 ```{r,fig.width=7, fig.height=5, fig.retina=3}
 worldplot(data = testdata1,
@@ -98,6 +101,8 @@ worldplot(data = testdata1,
 ```
 
 \newpage
+
+## Colour palettes
 
 `palette_option` allows to change the colour palette:
 
