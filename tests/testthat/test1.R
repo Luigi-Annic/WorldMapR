@@ -26,4 +26,12 @@ worldplot(data = testdata1c,
           CountryNameType = "isoa2",
           rangeVal = c(0,100),
           latitude = c(5350000, 1000000), longitude = c(2500000, 6900000),
-          crs = 3035, annote = TRUE)
+          crs = 3035, annote = TRUE, transform_limits = FALSE)
+
+worldplot(data = testdata1c,
+          ColName = "value",
+          CountryName = "iso_a2",
+          CountryNameType = "isoa2",
+          rangeVal = c(0,100),
+          latitude = c(35, 80), longitude = c(-15,50),
+          crs = 3035, annote = T)
