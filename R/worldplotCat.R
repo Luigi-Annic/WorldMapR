@@ -28,7 +28,7 @@
 #'              annote = FALSE)
 #'
 worldplotCat <- function(data,
-                         ColName, CountryName, CountryNameType,
+                         ColName, CountryName, CountryNameType = "isoa2",
                          longitude = c(-180, 180) ,latitude = c(-90, 90), crs = 4326,
                          title = "", legendTitle = as.character(ColName),
                          Categories = levels(factor(map_df$MapFiller)),

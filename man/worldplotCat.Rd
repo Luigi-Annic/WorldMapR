@@ -8,7 +8,7 @@ worldplotCat(
   data,
   ColName,
   CountryName,
-  CountryNameType,
+  CountryNameType = "isoa2",
   longitude = c(-180, 180),
   latitude = c(-90, 90),
   crs = 4326,
