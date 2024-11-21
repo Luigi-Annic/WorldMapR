@@ -1,4 +1,4 @@
-# WorldMapR 0.1.4
+# WorldMapR 1.0.1
 
 * Corrected a bug which caused the figures to be plotted twice
 * Default option for range value added
