@@ -83,9 +83,6 @@ worldplot <- function(data,
   
 
   if (missing(rangeVal)) {
-    message("No Range Value provided. A default has been calculated from the values column.
-             If this is not optimal, specify the argument rangeVal")
-    
     rangeVal = c(range(map_df$MapFiller, na.rm = TRUE))
   }
   
