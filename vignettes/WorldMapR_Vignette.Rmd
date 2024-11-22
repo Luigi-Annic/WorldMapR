@@ -173,8 +173,6 @@ For example, the EPSG::3035 is a nice projection specifically thought for Europe
 The option `crs` allows to define the coordinate reference system of choice.
 Keep in mind that, if you change the reference system, there will be the need to modify `longitude` and `latitude` accordingly - these may not be limited to (-180,180) and (-90, 90) anymore. The option `transform_limits` helps to deal with this issue: if set to `TRUE` (which is the default), the values of latitude and longitude are automatically updated to the crs that had been defined previously. Usually, it is easier to use the classical longitude and latitude definition for the limits, and let the program automatically update it based on the new crs.
 
-As an example, the two chunks below provide the same map, as they only change for the definition of the limit coordinates and the `transform_limits` argument
-
 ```{r,fig.width=7, fig.height=5, fig.retina=3, eval=TRUE}
 worldplotCat(data = testdata1c,
              ColName = "ValCat",
@@ -191,6 +189,10 @@ worldplotCat(data = testdata1c,
 
 
 For additional information regarding the transformation of coordinates in different systems, have a look at https://epsg.io/transform
+
+The transform_limits argument is still under development; you can still set that to FALSE and manually set the extreme values for the coordinates. Some trial and error might still be needed to find the best position.
+
+In a future release, ESRI projections will be available.
 
 \newpage
 
