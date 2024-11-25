@@ -10,7 +10,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-The aim of this package is to create maps of the world or sub regions based on user-defined coordinates, filling them based on the provided data. This vignette will highlight its main features.
+The aim of this package is to create maps of the world or sub regions based on user-defined coordinates, filling them based on the provided data. This vignette will highlight the main features and options.
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -43,6 +43,7 @@ dim(testdata1c)
 ```
 
 All these datasets have two variables defining the country for demonstrative purposes; however, only one is actually needed.
+
 \newpage
 
 # Displaying a world map for continuous data
@@ -50,7 +51,13 @@ All these datasets have two variables defining the country for demonstrative pur
 As a first step, we may want to plot a map of the world, displaying our data.
 
 We can do this by using the function `worldplot()`.
-At its bare minimum, this function takes the name of the dataframe (testdata1), the name of the column with the values to be plotted (IntVal), and the name of the column with the country names (countrycode). We also add the range of the values that we want to be shown (these should usually be near to the minimum and the maximum observation that we want to plot).
+At its bare minimum, this function requires to input
+
+- the name of the dataframe (testdata1, in our example)
+- the name of the column with the values to be plotted (IntVal)
+- the name of the column containing the country names (countrycode).
+
+We also add the range of the values that we want to be shown (these should usually be near to the minimum and the maximum observation that we want to plot).
 
 ```{r, fig.width=7, fig.height=5, fig.retina=3}
 worldplot(data = testdata1,
@@ -59,9 +66,9 @@ worldplot(data = testdata1,
           rangeVal = c(0,100))
 ```
 
-By default, the function expects the country name column to be of type ISO 3166-1 alpha-2 (referred as `iso-a2` throughout the package). More information about it can be found at (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). \
-It is possible to specify it differently: for example, the following code provides the same result. \
-Note that it is advisable to use `iso-a2` codes, as country names might be ambiguous in some cases.
+By default, the function expects the country names column to be of type ISO 3166-1 alpha-2 (referred as `iso-a2` throughout the package). Some information about this codification can be found at (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). \
+It is possible to specify it differently with the argument `CountryNameType`: for example, the following code provides the same result as the chunk above. \
+Note that it is advisable to use `iso-a2` (or `iso-a3`) codes, as country names might be ambiguous in some cases.
 
 ```{r, eval=FALSE}
 worldplot(data = testdata1,
@@ -107,7 +114,7 @@ worldplot(data = testdata1,
 `palette_option` allows to change the colour palette:
 
 - By specifying a letter between "A" and "H", we obtain different palettes from the `scale_fill_viridis()` palette
-- By specifying two or more colours inside a vector, we obtain a user defined gradient based on the colours we have defined:
+- By specifying two or more colours inside a vector, we obtain a user defined gradient based on the colours we have defined.
 
 ```{r,fig.width=7, fig.height=5, fig.retina=3}
 worldplot(data = testdata1,
@@ -134,7 +141,7 @@ worldplot(data = testdata1,
 
 The function `worldmapCat()` deals with categorical data.
 
-The syntax is similar to the previous, with some minor changes.
+The syntax is similar to the one we have just explained, with some minor changes.
 
 
 ```{r,fig.width=7, fig.height=5, fig.retina=3}
@@ -145,7 +152,7 @@ worldplotCat(data = testdata1b,
 
 \newpage
 
-The user is allowed to define the color palette manually: it is simply required to define a colour for each category (plus eventually one for missing data), and provide it in `palette_option`.
+Once again, the user is allowed to define the color palette manually: it is simply required to define a colour for each category (plus eventually one for missing data), and provide it in `palette_option`.
 
 ```{r,fig.width=7, fig.height=5, fig.retina=3}
 
@@ -187,12 +194,13 @@ worldplotCat(data = testdata1c,
              transform_limits = TRUE)
 ```
 
+We note a message telling us that the coordinate reference system has indeed changed.
 
 For additional information regarding the transformation of coordinates in different systems, have a look at https://epsg.io/transform
 
 The transform_limits argument is still under development; you can still set that to FALSE and manually set the extreme values for the coordinates. Some trial and error might still be needed to find the best position.
 
-In a future release, ESRI projections will be available.
+In a future release, ESRI projections will be available, in addition to EPSG.
 
 \newpage
 
