@@ -10,8 +10,6 @@
 #' @return a map
 #' @export
 #'
-
-#'
 #' @examples
 #' data(testdata1b)
 #' worldplotCat(data = testdata1b,
@@ -136,8 +134,6 @@ worldplotCat <- function(data,
       with_shadow(geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2), size= 2/div, color= 'white', fontface= 'bold'),
                   x_offset = 2, y_offset = 2, sigma = 1)
   }
-
-  # print(wplot)
 
   return(wplot)
 

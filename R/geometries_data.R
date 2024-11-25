@@ -6,11 +6,9 @@
 #'
 #' @param exclude.iso.na if \code{TRUE} (default), countries that do not have a ISO 3166 code are excluded from the table.
 #' @param countries.list List of the ISO 3166-1 alpha-2 codes of countries that are to be included. By default it is set to \code{NULL} and all countries are included.
-
+#'
 #' @return an object of class \code{data.frame} and \code{sf}.
 #' @export
-
-#'
 #'
 #' @examples
 #' geometries_data(countries.list = c("IT", "FR", "US"))
