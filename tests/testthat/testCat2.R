@@ -59,5 +59,5 @@ worldplotCat(data = testdata1c,
              palette_option = c("#C3E2EA", "#58C0D0", "#256C91"),
              Categories = c("Low", "Average", "High"),
              legendTitle = "CAT",
-             latitude = c(30,70), longitude = c(-7, 70),
+             latitude = c(30,62), longitude = c(-7, 70),
              crs = 3035, annote = TRUE, transform_limits = T)
