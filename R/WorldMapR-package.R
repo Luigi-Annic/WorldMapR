@@ -1,0 +1,42 @@
+#' @keywords internal
+"_PACKAGE"
+
+## usethis namespace: start
+#' @importFrom countrycode countrycode
+#' @importFrom dplyr %>%
+#' @importFrom dplyr arrange
+#' @importFrom dplyr filter
+#' @importFrom dplyr left_join
+#' @importFrom dplyr mutate
+#' @importFrom dplyr relocate
+#' @importFrom dplyr select
+#' @importFrom ggfx with_shadow
+#' @importFrom ggplot2 aes
+#' @importFrom ggplot2 coord_sf
+#' @importFrom ggplot2 element_blank
+#' @importFrom ggplot2 element_rect
+#' @importFrom ggplot2 element_text
+#' @importFrom ggplot2 geom_sf
+#' @importFrom ggplot2 geom_text
+#' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 ggtitle
+#' @importFrom ggplot2 labs
+#' @importFrom ggplot2 scale_fill_gradientn
+#' @importFrom ggplot2 scale_fill_manual
+#' @importFrom ggplot2 scale_fill_viridis_c
+#' @importFrom ggplot2 scale_fill_viridis_d
+#' @importFrom ggplot2 theme
+#' @importFrom ggplot2 unit
+#' @importFrom ggplot2 xlab
+#' @importFrom ggplot2 ylab
+#' @importFrom rnaturalearth ne_countries
+#' @importFrom sf st_as_sf
+#' @importFrom sf st_bbox
+#' @importFrom sf st_centroid
+#' @importFrom sf st_coordinates
+#' @importFrom sf st_crs
+#' @importFrom sf st_transform
+#' @importFrom sf st_union
+#' @importFrom utils globalVariables
+## usethis namespace: end
+NULL
