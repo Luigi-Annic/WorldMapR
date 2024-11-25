@@ -9,9 +9,7 @@
 
 #' @return an object of class \code{data.frame} and \code{sf}.
 #' @export
-#' @importFrom rnaturalearth ne_countries
-#' @importFrom dplyr "%>%"  select filter mutate arrange
-#' @importFrom sf st_centroid st_coordinates
+
 #'
 #'
 #' @examples

@@ -22,13 +22,7 @@
 #'
 #' @return a map
 #' @export
-#' @importFrom rnaturalearth ne_countries
-#' @importFrom countrycode countrycode
-#' @importFrom dplyr "%>%" left_join select filter mutate relocate
-#' @importFrom ggplot2 ggplot geom_sf theme labs scale_fill_viridis_c scale_fill_gradientn coord_sf xlab ylab ggtitle
-#'                     aes unit element_text element_blank element_rect geom_text
-#' @importFrom sf st_centroid st_coordinates st_union st_as_sf st_transform st_crs st_bbox
-#' @importFrom ggfx with_shadow
+
 #'
 #' @examples
 #' data(testdata1b)
