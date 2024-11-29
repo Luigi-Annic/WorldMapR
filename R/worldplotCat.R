@@ -61,6 +61,18 @@ worldplotCat <- function(data,
   simdata <- as.data.frame(simdata)
 
   map_df <- left_join(map_df0, simdata, by = "iso_a2")
+  
+  if (crs != 4326 & transform_limits == TRUE) {
+      #Correct longitude and latitude values
+      lim1 <- data.frame(X = longitude, Y = latitude)
+      lim2 <- st_as_sf(lim1, coords=c("X","Y"), crs="EPSG:4326" )
+      lim3 <- st_transform(lim2, crs = st_crs(crs))
+      
+      longitude <- c(st_bbox(lim3)$xmin, st_bbox(lim3)$xmax)
+      latitude <-  c(st_bbox(lim3)$ymin, st_bbox(lim3)$ymax)
+      ##
+    }
+
 
   wplot <- ggplot(data= map_df) +
     geom_sf(color= 'black', aes(fill= MapFiller)) +
@@ -71,7 +83,7 @@ worldplotCat <- function(data,
           panel.grid = element_blank(),
           panel.background = element_rect(fill = 'grey95'))+
     labs(fill= legendTitle)+
-    coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW') +
+    coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW', crs = st_crs(crs)) +
     xlab('')+ ylab('')+
     ggtitle(title)
 
@@ -85,23 +97,7 @@ worldplotCat <- function(data,
                         labels = Categories, na.translate = na.as.category)
   }
 
-  if (crs != 4326) {
-    
-    if (transform_limits == TRUE) {
-      #Correct longitude and latitude values
-      lim1 <- data.frame(X = longitude, Y = latitude)
-      lim2 <- st_as_sf(lim1, coords=c("X","Y"), crs="EPSG:4326" )
-      lim3 <- st_transform(lim2, crs = st_crs(crs))
-      
-      longitude <- c(st_bbox(lim3)$xmin, st_bbox(lim3)$xmax)
-      latitude <-  c(st_bbox(lim3)$ymin, st_bbox(lim3)$ymax)
-      ##
-    }
-    
-    wplot <- wplot +
-      coord_sf(xlim= longitude, ylim= latitude, expand= FALSE, label_axes = 'SW',
-               crs = st_crs(crs))
-  }
+
 
   if (annote == TRUE) {
 
