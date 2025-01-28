@@ -15,9 +15,12 @@ worldplot(
   crs = 4326,
   title = "",
   legendTitle = as.character(ColName),
+  legend.position = "right",
   annote = FALSE,
   div = 1,
   palette_option = "D",
+  label.color = "white",
+  label.size = 2,
   na_colour = "grey80",
   transform_limits = TRUE
 )
@@ -43,11 +46,17 @@ worldplot(
 
 \item{legendTitle}{Title of the legend. Default is the name of the filling variable.}
 
+\item{legend.position}{Position of the legend. If set to "none", no legend is displayed}
+
 \item{annote}{Do you want to plot country labels (ISO 3166-1 alpha-2 code) on the map? Default is set to \code{FALSE}.}
 
 \item{div}{Parameter for modifying the elements dimensions in the map. Usually, it does not need to be modified. Default value is 1.}
 
 \item{palette_option}{Character string indicating the palette to be used. Available options range between "A" and "H".}
+
+\item{label.color}{Color of the labels if annote = TRUE. Default is white}
+
+\item{label.size}{Size of the labels if annote = TRUE}
 
 \item{na_colour}{The colour to be used for countries with missing information. Default is grey80}
 

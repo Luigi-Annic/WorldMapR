@@ -22,10 +22,10 @@
 worldplotCat <- function(data,
                          ColName, CountryName, CountryNameType = "isoa2",
                          longitude = c(-180, 180) ,latitude = c(-90, 90), crs = 4326,
-                         title = "", legendTitle = as.character(ColName),
+                         title = "", legendTitle = as.character(ColName), legend.position = "right",
                          Categories = levels(factor(map_df$MapFiller)),
-                         na.as.category = TRUE,
-                         annote = FALSE, div = 1, palette_option = "D",
+                         na.as.category = TRUE, label.color = "white", label.size = 2,
+                         annote = FALSE, div = 1, palette_option = "D", 
                          na_colour = "grey80", transform_limits = TRUE) {
 
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
@@ -79,6 +79,7 @@ worldplotCat <- function(data,
     theme(legend.key.size = unit(1/div, 'lines'),
           legend.text = element_text(size= 8/div),
           legend.title = element_text(size = 8/div),
+          legend.position = legend.position,
           plot.title = element_text(size= 8/div),
           panel.grid = element_blank(),
           panel.background = element_rect(fill = 'grey95'))+
@@ -101,33 +102,11 @@ worldplotCat <- function(data,
 
   if (annote == TRUE) {
 
-    world_points <- geometries_data(exclude.iso.na = T,
-                                    countries.list = simdata$iso_a2[!is.na(simdata$MapFiller)])
-
-    if (crs != 4326) {
-
-      d <- data.frame(iso_a2 = world_points$iso_a2,
-                      X = world_points$X,
-                      Y =world_points$Y)
-
-      d2 <- st_as_sf(d, coords=c("X","Y"), crs="EPSG:4326" )
-
-      d3 <- st_transform(d2, crs = st_crs(crs))
-
-      d4 <- data.frame(iso_a2 = d3$iso_a2,
-                       X = rep(NA, nrow(d3)),
-                       Y = rep(NA, nrow(d3)))
-
-      for (i in 1: nrow(d3)) {
-        d4[i,c("X","Y")] <- d3$geometry[[i]]
-      }
-
-      world_points <- d4
-
-    }
+    world_points <- countrycoord_data(countries.list = simdata$iso_a2[!is.na(simdata$MapFiller)],
+                                      crs = crs, UK_as_GB = TRUE, exclude.iso.na = TRUE)
 
     wplot <- wplot +
-      with_shadow(geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2), size= 2/div, color= 'white', fontface= 'bold'),
+      with_shadow(geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2), size= label.size/div, color= label.color, fontface= 'bold'),
                   x_offset = 2, y_offset = 2, sigma = 1)
   }
 

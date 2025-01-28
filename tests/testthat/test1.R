@@ -4,7 +4,9 @@ worldplot(data = testdata1,
           CountryNameType = "isoa2",
           rangeVal = c(0,100),
           latitude = c(0,45), longitude = c(-10,50),
-          palette_option = c("red", "lightyellow", "green"))
+          palette_option = c("red", "lightyellow", "green"),
+          legend.position = "right",
+          annote = TRUE, label.color = "black", label.size = 3)
 
 worldplot(data = testdata1c,
           ColName = "value",

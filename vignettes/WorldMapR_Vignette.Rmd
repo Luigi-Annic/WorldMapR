@@ -1,6 +1,6 @@
 ---
 title: "WorldMapR"
-subtitle: "v. 1.0.1"
+subtitle: "v. 1.1.0"
 output: rmarkdown::html_vignette
 author: Luigi Annicchiarico
 date: "`r format(Sys.time(), '%d %B, %Y')`"

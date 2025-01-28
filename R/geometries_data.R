@@ -16,6 +16,9 @@
 
 geometries_data <- function(exclude.iso.na = TRUE,
                             countries.list = NULL) {
+  
+  warning("geometries_data is deprecated; for obtaining the coordinates
+  of the countries central points switch to WorldMapR::countrycoord_data")
 
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
@@ -69,5 +72,5 @@ geometries_data <- function(exclude.iso.na = TRUE,
   }
 
   return(world_points)
-
+  
 }

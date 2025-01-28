@@ -50,7 +50,7 @@ worldplotCat(data = testdata1c,
              legendTitle = "CAT",
              latitude = c(5350000, 1000000), longitude = c(2500000, 6900000),
              crs = 3035, annote = TRUE,
-             na.as.category = F, transform_limits = F)
+             na.as.category = F, transform_limits = F, label.color = "red", label.size = 5)
 
 worldplotCat(data = testdata1c,
              ColName = "ValCat",
@@ -61,3 +61,14 @@ worldplotCat(data = testdata1c,
              legendTitle = "CAT",
              latitude = c(30,62), longitude = c(-7, 70),
              crs = 3035, annote = TRUE, transform_limits = T)
+
+
+worldplotCat(data = testdata1c,
+             ColName = "ValCat",
+             CountryName = "iso_a2",
+             CountryNameType = "isoa2",
+             palette_option = c("#C3E2EA", "#58C0D0", "#256C91"),
+             Categories = c("Low", "Average", "High"),
+             legendTitle = "CAT",
+             latitude = c(30,82), longitude = c(-20, 70),
+             annote = TRUE)

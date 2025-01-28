@@ -14,8 +14,11 @@ worldplotCat(
   crs = 4326,
   title = "",
   legendTitle = as.character(ColName),
+  legend.position = "right",
   Categories = levels(factor(map_df$MapFiller)),
   na.as.category = TRUE,
+  label.color = "white",
+  label.size = 2,
   annote = FALSE,
   div = 1,
   palette_option = "D",
@@ -42,9 +45,15 @@ worldplotCat(
 
 \item{legendTitle}{Title of the legend. Default is the name of the filling variable.}
 
+\item{legend.position}{Position of the legend. If set to "none", no legend is displayed}
+
 \item{Categories}{categories labels to be plotted in the legend.}
 
 \item{na.as.category}{Treat \code{NA} as a separate category? If `\code{TRUE}, NA will also appear in the legend as one of the categories.}
+
+\item{label.color}{Color of the labels if annote = TRUE. Default is white}
+
+\item{label.size}{Size of the labels if annote = TRUE}
 
 \item{annote}{Do you want to plot country labels (ISO 3166-1 alpha-2 code) on the map? Default is set to \code{FALSE}.}
 

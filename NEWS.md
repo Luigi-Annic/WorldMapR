@@ -1,3 +1,14 @@
+# WorldMapR 1.1.0
+
+* Added the internal function countrycoord_data, which substitutes geometries_data and incorporates
+  modifications of the crs.
+* Because of the above, geometries_data is now deprecated, and might be removed in later releases.
+  It is not used anymore in worldplot and worldplotCat
+* Added legend.position option to move or remove the legend
+* Added label.color option to change color of the country labels
+* Added label.size option to change the size of the country labels
+
+
 # WorldMapR 1.0.1
 
 * Corrected a bug which caused the figures to be plotted twice
