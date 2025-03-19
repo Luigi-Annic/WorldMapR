@@ -15,7 +15,6 @@ Depends:
 Imports:
     ggplot2  (>= 3.4.4),
     dplyr (>= 1.1.4),
-    rnaturalearth  (>= 1.0.1),
     sf  (>= 1.0-14),
     countrycode (>= 1.5.0),
     utils (>= 4.3.0),
@@ -26,6 +25,5 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
-    rnaturalearthdata (>= 1.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3

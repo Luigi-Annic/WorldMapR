@@ -24,13 +24,6 @@
 
 countrycoord_data <- function (countries.list = NULL, crs = 4326, UK_as_GB = TRUE, exclude.iso.na = TRUE) {
   
-  world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
-  map_df0 <- world %>% select(name, iso_a2_eh, iso_a3_eh, geometry) %>% 
-    mutate(iso_a2 = ifelse(name %in% c("Indian Ocean Ter.", 
-                                       "Ashmore and Cartier Is."), -99, iso_a2_eh),
-           iso_a3 = ifelse(name %in%  c("Indian Ocean Ter.", "Ashmore and Cartier Is."), -99, iso_a3_eh)) %>% 
-    select(name, iso_a2, iso_a3, geometry)
-  
   sepNat <- c("AQ", "DK", "FJ", "FR", "GB",
               "GR", "HR", "IL", "IN", "NL","NO",
               "RU", "SD", "SE", "SN", "SS")

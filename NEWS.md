@@ -1,5 +1,7 @@
 # WorldMap 1.2.0
 
+* map_df0 is now saved as one of the dataset, meaning that it is not built from scratch every time
+  a function is called. Because of this, rnaturalearth and rnaturalearthdata packages are not required to be imported anymore
 * Adjusted some label positions
 * Added the shadows option, to choose whether to print a shadow around country
   labels or not

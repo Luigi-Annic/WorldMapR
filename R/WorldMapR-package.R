@@ -29,7 +29,6 @@
 #' @importFrom ggplot2 unit
 #' @importFrom ggplot2 xlab
 #' @importFrom ggplot2 ylab
-#' @importFrom rnaturalearth ne_countries
 #' @importFrom sf st_as_sf
 #' @importFrom sf st_bbox
 #' @importFrom sf st_centroid

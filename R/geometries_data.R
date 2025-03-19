@@ -20,16 +20,6 @@ geometries_data <- function(exclude.iso.na = TRUE,
   warning("geometries_data is deprecated; for obtaining the coordinates
   of the countries central points switch to WorldMapR::countrycoord_data")
 
-  world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
-
-  map_df0<- world %>%
-    select(name, iso_a2_eh, iso_a3_eh, geometry) %>%
-    mutate(iso_a2 = ifelse(name %in% c("Indian Ocean Ter." , "Ashmore and Cartier Is."), -99, iso_a2_eh),
-           iso_a3 = ifelse(name %in% c("Indian Ocean Ter." , "Ashmore and Cartier Is."), -99, iso_a3_eh)) %>%
-    select(name, iso_a2, iso_a3, geometry)
-
-
-
   sepNat <- c('AQ', 'DK' ,'FJ', 'FR', 'GB', 'GR', 'HR' , 'IL' , 'IN', 'NO',
               'RU', 'SD', 'SN', 'SS')
 
