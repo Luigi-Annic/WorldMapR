@@ -22,7 +22,8 @@ worldplot(
   label.color = "white",
   label.size = 2,
   na_colour = "grey80",
-  transform_limits = TRUE
+  transform_limits = TRUE,
+  shadows = TRUE
 )
 }
 \arguments{
@@ -63,6 +64,8 @@ worldplot(
 \item{transform_limits}{Only if crs is specified and different from 4326. If TRUE (the default) the program expects to receive values of longitude and latitude as in EPSG 4326,
 (i.e., within -180, +180 for longitude and within -90, +90 for latitude) and automatically updates to the new crs.
 Set to FALSE if you want to define longitude and latitude limits based on the new crs}
+
+\item{shadows}{If TRUE, add shadows to the country labels (only if annote = TRUE)}
 }
 \value{
 a map

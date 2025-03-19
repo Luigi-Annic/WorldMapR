@@ -1,3 +1,11 @@
+# WorldMap 1.1.1
+
+* Adjusted some label positions
+* Added the shadows option, to choose whether to print a shadow around country
+  labels or not
+* Improved the UK_as_GB option in countrycoord_data
+
+
 # WorldMapR 1.1.0
 
 * Added the internal function countrycoord_data, which substitutes geometries_data and incorporates

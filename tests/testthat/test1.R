@@ -35,5 +35,5 @@ worldplot(data = testdata1c,
           CountryName = "iso_a2",
           CountryNameType = "isoa2",
           rangeVal = c(0,100),
-          latitude = c(35, 80), longitude = c(-15,50),
-          crs = 3035, annote = T)
+          latitude = c(35, 70), longitude = c(-15,50), annote = T,
+          shadows = F, label.color = "black")

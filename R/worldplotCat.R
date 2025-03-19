@@ -26,7 +26,7 @@ worldplotCat <- function(data,
                          Categories = levels(factor(map_df$MapFiller)),
                          na.as.category = TRUE, label.color = "white", label.size = 2,
                          annote = FALSE, div = 1, palette_option = "D", 
-                         na_colour = "grey80", transform_limits = TRUE) {
+                         na_colour = "grey80", transform_limits = TRUE, shadows = TRUE) {
 
   world <- ne_countries(scale = 50, continent = NULL, returnclass = "sf")
 
@@ -104,10 +104,17 @@ worldplotCat <- function(data,
 
     world_points <- countrycoord_data(countries.list = simdata$iso_a2[!is.na(simdata$MapFiller)],
                                       crs = crs, UK_as_GB = TRUE, exclude.iso.na = TRUE)
-
-    wplot <- wplot +
+    
+    if (shadows == TRUE) {
+      
+       wplot <- wplot +
       with_shadow(geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2), size= label.size/div, color= label.color, fontface= 'bold'),
                   x_offset = 2, y_offset = 2, sigma = 1)
+    } else {
+      
+      wplot <- wplot +
+        geom_text(data= world_points, aes(x=X, y=Y,label= iso_a2), size= label.size/div, color= label.color, fontface= 'bold')
+    }
   }
 
   return(wplot)
