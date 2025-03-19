@@ -1,7 +1,7 @@
 Package: WorldMapR
 Type: Package
 Title: Worldwide or Coordinates-Based Heat Maps
-Version: 1.1.0
+Version: 1.2.0
 Authors@R: c(
     person("Luigi", "Annicchiarico", email = "luigi.annic@gmail.com", role = c("cre", "aut"))
     )

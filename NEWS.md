@@ -1,4 +1,4 @@
-# WorldMap 1.1.1
+# WorldMap 1.2.0
 
 * Adjusted some label positions
 * Added the shadows option, to choose whether to print a shadow around country
