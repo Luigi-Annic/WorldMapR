@@ -31,15 +31,21 @@ countrycoord_data <- function (countries.list = NULL, crs = 4326, UK_as_GB = TRU
            iso_a3 = ifelse(name %in%  c("Indian Ocean Ter.", "Ashmore and Cartier Is."), -99, iso_a3_eh)) %>% 
     select(name, iso_a2, iso_a3, geometry)
   
-  sepNat <- c("AQ", "DK", "FJ", "FR", "GB", "GR", "HR", "IL", 
-              "IN", "NO", "RU", "SD", "SN", "SS")
+  sepNat <- c("AQ", "DK", "FJ", "FR", "GB",
+              "GR", "HR", "IL", "IN", "NL","NO",
+              "RU", "SD", "SE", "SN", "SS")
   point_nations <- map_df0 %>% filter(!(iso_a2 %in% sepNat))
   world_points0 <- cbind(point_nations, st_coordinates(st_centroid(point_nations$geometry)))
   leftout <- map_df0 %>% filter(iso_a2 %in% sepNat) %>% arrange(iso_a2) %>% 
-    mutate(X = c(0, 9, 178, 2, -1, 21.5, 17, 35, 79, 10, 
-                 40, 30, -14, 31),
-           Y = c(-80, 56, -17, 46, 52.5, 39.5, 
-                 45.5, 31, 21, 61, 55, 12, 14, 7)) %>% relocate(geometry, .after = Y)
+    mutate(X = c(0    ,9.2  ,178  ,2    , -1  ,
+                 21.5 ,16.8 ,35   ,79   ,5.7  , 10  ,
+                 40   ,30   ,16   ,-14  ,31
+                 ),
+           Y = c(-80  ,56   ,-17  , 46  ,52.5 ,
+                 39.5 ,45.7 ,31   , 21  ,52.5 ,61   ,
+                 55   ,12   ,60   ,14   , 7
+                 )) %>% 
+    relocate(geometry, .after = Y)
   
   world_points <- rbind(world_points0, leftout)
   if (exclude.iso.na == TRUE) {
