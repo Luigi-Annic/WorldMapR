@@ -7,9 +7,8 @@
 #' @param countries.list List of the ISO 3166-1 alpha-2 codes of countries that are to be included. By default it is set to \code{NULL} and all countries are included.
 #' @param crs Coordinate reference system (EPSG). By default the value is 4326, which corresponds to EPSG::4326 (WGS84)
 #' @param UK_as_GB Do you want to translate the GB isoa2 code to UK? If FALSE, GB is returned in the output data.frame. 
-#'                If TRUE, UK is returned.
-#'                Note that you will need to provide GB as the input for United Kingdom, even if you want the UK label to be
-#'                returned in output.  
+#'                 If TRUE (default), UK is returned.
+#'              
 #' @param exclude.iso.na if \code{TRUE} (default), countries that do not have a ISO 3166 code are excluded from the table.
 #'
 #' @return an object of class \code{data.frame}
@@ -45,6 +44,13 @@ countrycoord_data <- function (countries.list = NULL, crs = 4326, UK_as_GB = TRU
     world_points <- world_points %>% filter(!(is.na(iso_a2) | 
                                                 iso_a2 == -99))
   }
+  
+  if (UK_as_GB == TRUE) {
+    countries.list <- replace(countries.list, countries.list =="GB", "UK")
+    world_points$iso_a2[world_points$name == "United Kingdom"] <- "UK"
+  }
+  
+  
   if (!is.null(countries.list)) {
     world_points <- world_points %>% filter(iso_a2 %in% countries.list)
     notfoundcodes <- countries.list[!(countries.list %in% 
@@ -59,10 +65,7 @@ countrycoord_data <- function (countries.list = NULL, crs = 4326, UK_as_GB = TRU
                              X = world_points$X, 
                              Y =world_points$Y)
   
-  if (UK_as_GB == TRUE) { # United Kingdom code adjustment
-    world_points[world_points$iso_a2 == "GB", "iso_a2"] <- "UK"   
-  }
-  
+
   if (crs != 4326) {
     
     d2 <- st_as_sf(world_points, coords=c("X","Y"), crs="EPSG:4326" )

@@ -20,7 +20,7 @@ Imports:
     utils (>= 4.3.0),
     ggfx (>= 1.0.1)
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Suggests: 
     knitr,
     rmarkdown,

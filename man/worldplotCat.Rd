@@ -24,7 +24,8 @@ worldplotCat(
   palette_option = "D",
   na_colour = "grey80",
   transform_limits = TRUE,
-  shadows = TRUE
+  shadows = TRUE,
+  UK_as_GB = TRUE
 )
 }
 \arguments{
@@ -69,6 +70,10 @@ worldplotCat(
 Set to FALSE if you want to define longitude and latitude limits based on the new crs}
 
 \item{shadows}{If TRUE, add shadows to the country labels (only if annote = TRUE)}
+
+\item{UK_as_GB}{Argument passed to countrycoord_data if annote is set to TRUE.
+Do you want to translate the GB isoa2 code to UK? If FALSE, GB is returned in the output data.frame. 
+If TRUE (default), UK is returned.}
 }
 \value{
 a map

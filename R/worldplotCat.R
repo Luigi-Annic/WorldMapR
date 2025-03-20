@@ -26,7 +26,7 @@ worldplotCat <- function(data,
                          Categories = levels(factor(map_df$MapFiller)),
                          na.as.category = TRUE, label.color = "white", label.size = 2,
                          annote = FALSE, div = 1, palette_option = "D", 
-                         na_colour = "grey80", transform_limits = TRUE, shadows = TRUE) {
+                         na_colour = "grey80", transform_limits = TRUE, shadows = TRUE, UK_as_GB = TRUE) {
 
 
   simdata <- c()
@@ -46,6 +46,8 @@ worldplotCat <- function(data,
   }
 
   simdata <- as.data.frame(simdata)
+  
+  simdata$iso_a2 <- replace(simdata$iso_a2, simdata$iso_a2 == "UK", "GB")
 
   map_df <- left_join(map_df0, simdata, by = "iso_a2")
   
@@ -90,7 +92,7 @@ worldplotCat <- function(data,
   if (annote == TRUE) {
 
     world_points <- countrycoord_data(countries.list = simdata$iso_a2[!is.na(simdata$MapFiller)],
-                                      crs = crs, UK_as_GB = TRUE, exclude.iso.na = TRUE)
+                                      crs = crs, UK_as_GB = UK_as_GB, exclude.iso.na = TRUE)
     
     if (shadows == TRUE) {
       

@@ -60,7 +60,8 @@ worldplotCat(data = testdata1c,
              Categories = c("Low", "Average", "High"),
              legendTitle = "CAT",
              latitude = c(30,62), longitude = c(-7, 70),
-             crs = 3035, annote = TRUE, transform_limits = T)
+             crs = 3035, annote = TRUE, transform_limits = T,
+             UK_as_GB = F)
 
 
 worldplotCat(data = testdata1c,
@@ -71,4 +72,4 @@ worldplotCat(data = testdata1c,
              Categories = c("Low", "Average", "High"),
              legendTitle = "CAT",
              latitude = c(30,82), longitude = c(-20, 70),
-             annote = TRUE)
+             annote = TRUE, UK_as_GB = T)

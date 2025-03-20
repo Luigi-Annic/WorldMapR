@@ -17,9 +17,7 @@ countrycoord_data(
 \item{crs}{Coordinate reference system (EPSG). By default the value is 4326, which corresponds to EPSG::4326 (WGS84)}
 
 \item{UK_as_GB}{Do you want to translate the GB isoa2 code to UK? If FALSE, GB is returned in the output data.frame. 
-If TRUE, UK is returned.
-Note that you will need to provide GB as the input for United Kingdom, even if you want the UK label to be
-returned in output.}
+If TRUE (default), UK is returned.}
 
 \item{exclude.iso.na}{if \code{TRUE} (default), countries that do not have a ISO 3166 code are excluded from the table.}
 }
