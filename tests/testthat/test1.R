@@ -6,7 +6,7 @@ worldplot(data = testdata1,
           latitude = c(0,45), longitude = c(-10,50),
           palette_option = c("red", "lightyellow", "green"),
           legend.position = "right",
-          annote = TRUE, label.color = "black", label.size = 3)
+          annote = TRUE, label.color = "black", label.size = 3, shadows = F)
 
 worldplot(data = testdata1c,
           ColName = "value",
@@ -45,4 +45,4 @@ worldplot(data = data.frame(country = c("UK", "DK", "IT"), values = c(2,13,15)),
           rangeVal = c(0,16),
           latitude = c(35, 70), longitude = c(-15,50), annote = T,
           shadows = T, label.color = "white", label.size = 3.5,
-          UK_as_GB =F)
+          UK_as_GB =T)

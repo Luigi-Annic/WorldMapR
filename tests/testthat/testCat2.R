@@ -28,7 +28,8 @@ worldplotCat(data = testdata1b,
              palette_option = c("#C3E2EA", "#58C0D0", "#256C91"),
              Categories = c("Low", "Average", "High"),
              legendTitle = "CAT",
-             annote = TRUE)
+             annote = TRUE,
+             na.as.category = F)
 
 worldplotCat(data = testdata1c,
              ColName = "ValCat",
