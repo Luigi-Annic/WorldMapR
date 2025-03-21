@@ -36,4 +36,13 @@ worldplot(data = testdata1c,
           CountryNameType = "isoa2",
           rangeVal = c(0,100),
           latitude = c(35, 70), longitude = c(-15,50), annote = T,
-          shadows = F, label.color = "black")
+          shadows = T, label.color = "white", label.size = 3.5)
+
+worldplot(data = data.frame(country = c("UK", "DK", "IT"), values = c(2,13,15)),
+          ColName = "values",
+          CountryName = "country",
+          CountryNameType = "isoa2",
+          rangeVal = c(0,16),
+          latitude = c(35, 70), longitude = c(-15,50), annote = T,
+          shadows = T, label.color = "white", label.size = 3.5,
+          UK_as_GB =F)

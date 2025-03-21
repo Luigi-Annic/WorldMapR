@@ -155,17 +155,14 @@ worldplotCat(data = testdata1b,
 Once again, the user is allowed to define the color palette manually: it is simply required to define a colour for each category (plus eventually one for missing data), and provide it in `palette_option`.
 
 ```{r,fig.width=7, fig.height=5, fig.retina=3}
-
-colours <- c("#C3E2EA", "#58C0D0", "#256C91")
-
 worldplotCat(data = testdata1c,
              ColName = "ValCat",
              CountryName = "iso_a2",
              CountryNameType = "isoa2",
-             palette_option = colours ,
+             palette_option = c("#C3E2EA", "#58C0D0", "#256C91"),
              Categories = c("Low", "Average", "High"),
              legendTitle = "CAT",
-             latitude = c(30,72), longitude = c(-15,40),
+             latitude = c(30,72), longitude = c(-15,42),
              annote = TRUE)
 ```
 
@@ -190,7 +187,7 @@ worldplotCat(data = testdata1c,
              legendTitle = "CAT",
              annote = TRUE,  na.as.category = F,
              crs = 3035,
-             latitude = c(30, 66), longitude = c(-15, 55),
+             latitude = c(30, 66), longitude = c(-13, 55.5),
              transform_limits = TRUE)
 ```
 
@@ -229,7 +226,7 @@ figure1 <- worldplot(data = testdata1,
                      CountryNameType = "name",
                      rangeVal = c(0,100))
 
-tiff(filename =  paste(tempdir(), "\\figure.tiff"))
+tiff(filename =  paste(tempdir(), "/figure.tiff"))
 
 figure1
 
