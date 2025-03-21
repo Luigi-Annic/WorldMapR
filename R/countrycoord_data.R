@@ -6,7 +6,7 @@
 #'
 #' @param countries.list List of the ISO 3166-1 alpha-2 codes of countries that are to be included. By default it is set to \code{NULL} and all countries are included.
 #' @param crs Coordinate reference system (EPSG). By default the value is 4326, which corresponds to EPSG::4326 (WGS84)
-#' @param UK_as_GB Do you want to translate the GB isoa2 code to UK? If FALSE, GB is returned in the output data.frame. 
+#' @param UK_as_GB Which do you prefer between UK and GB as the code for the United Kingdom? If FALSE, GB is returned in the output data.frame. 
 #'                 If TRUE (default), UK is returned.
 #'              
 #' @param exclude.iso.na if \code{TRUE} (default), countries that do not have a ISO 3166 code are excluded from the table.
@@ -23,23 +23,35 @@
 
 countrycoord_data <- function (countries.list = NULL, crs = 4326, UK_as_GB = TRUE, exclude.iso.na = TRUE) {
   
-  sepNat <- c("AQ", "DK", "FJ", "FR", "GB",
-              "GR", "HR", "IL", "IN", "NL","NO",
-              "RU", "SD", "SE", "SN", "SS")
-  point_nations <- map_df0 %>% filter(!(iso_a2 %in% sepNat))
-  world_points0 <- cbind(point_nations, st_coordinates(st_centroid(point_nations$geometry)))
-  leftout <- map_df0 %>% filter(iso_a2 %in% sepNat) %>% arrange(iso_a2) %>% 
-    mutate(X = c(0    ,9.2  ,178  ,2    , -1  ,
-                 21.5 ,16.8 ,35   ,79   ,5.7  , 10  ,
-                 40   ,30   ,16   ,-14  ,31
-                 ),
-           Y = c(-80  ,56   ,-17  , 46  ,52.5 ,
-                 39.5 ,45.7 ,31   , 21  ,52.5 ,61   ,
-                 55   ,12   ,60   ,14   , 7
-                 )) %>% 
-    relocate(geometry, .after = Y)
+  sepNat <- as.data.frame(
+    rbind(c("AQ", 0,   -80),
+          c("DK", 9.2, 56 ),
+          c("FJ", 178, -17),
+          c("FR", 2, 47),
+          c("GB", -1  ,52.5),
+          c("GR", 21.5 ,39.5 ),
+          c("HR", 16.7 ,45.7),
+          c("IL", 35   ,31 ),
+          c("IN", 79   ,21),
+          c("NL", 5.7  ,52.5),
+          c("NO", 10  ,61 ),
+          c("PT", -8.2, 39.5),
+          c("RU", 40 , 55),
+          c("SD", 30   ,12 ),
+          c("SE", 15   ,60 ),
+          c("SN", -14  ,14),
+          c("SS", 31, 7)
+    ))
   
-  world_points <- rbind(world_points0, leftout)
+  colnames(sepNat) <- c("iso_a2", "X", "Y")
+  
+  point_nations <- map_df0 %>% filter(!(iso_a2 %in% sepNat$iso_a2)) 
+  world_points0 <- cbind(point_nations, st_coordinates(st_centroid(point_nations$geometry))) %>%
+    as.data.frame() %>%
+    select(iso_a2, X, Y)
+  
+  world_points <- rbind(world_points0, sepNat)
+  
   if (exclude.iso.na == TRUE) {
     world_points <- world_points %>% filter(!(is.na(iso_a2) | 
                                                 iso_a2 == -99))
@@ -47,11 +59,11 @@ countrycoord_data <- function (countries.list = NULL, crs = 4326, UK_as_GB = TRU
   
   if (UK_as_GB == TRUE) {
     countries.list <- replace(countries.list, countries.list =="GB", "UK")
-    world_points$iso_a2[world_points$name == "United Kingdom"] <- "UK"
+    world_points$iso_a2[world_points$iso_a2 == "GB"] <- "UK"
   }
   
   
-  if (!is.null(countries.list)) {
+  if (length(countries.list >0)) {
     world_points <- world_points %>% filter(iso_a2 %in% countries.list)
     notfoundcodes <- countries.list[!(countries.list %in% 
                                         world_points$iso_a2)]
@@ -61,11 +73,6 @@ countrycoord_data <- function (countries.list = NULL, crs = 4326, UK_as_GB = TRU
     }
   }
   
-  world_points <- data.frame(iso_a2 = world_points$iso_a2,
-                             X = world_points$X, 
-                             Y =world_points$Y)
-  
-
   if (crs != 4326) {
     
     d2 <- st_as_sf(world_points, coords=c("X","Y"), crs="EPSG:4326" )
@@ -81,6 +88,9 @@ countrycoord_data <- function (countries.list = NULL, crs = 4326, UK_as_GB = TRU
     
     world_points <- d4
   }
+  
+  world_points$X <- as.numeric(world_points$X)
+  world_points$Y <- as.numeric(world_points$Y)
   
   return(world_points)
 }
