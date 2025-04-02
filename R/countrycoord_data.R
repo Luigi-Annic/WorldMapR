@@ -45,16 +45,21 @@ countrycoord_data <- function (countries.list = NULL, crs = 4326, UK_as_GB = TRU
   
   colnames(sepNat) <- c("iso_a2", "X", "Y")
   
-  point_nations <- map_df0 %>% filter(!(iso_a2 %in% sepNat$iso_a2)) 
-  world_points0 <- cbind(point_nations, st_coordinates(st_centroid(point_nations$geometry))) %>%
-    as.data.frame() %>%
-    select(iso_a2, X, Y)
+  #point_nations <- map_df0 %>% filter(!(iso_a2 %in% sepNat$iso_a2)) 
+  #world_points0 <- cbind(point_nations, st_coordinates(st_centroid(point_nations$geometry))) %>%
+  #  as.data.frame() %>%
+  #  select(iso_a2, X, Y)
   
+  point_nations <- subset(WorldMapR::map_df0, !(iso_a2 %in% sepNat$iso_a2))
+  world_points0 <- subset(as.data.frame(cbind(point_nations, st_coordinates(st_centroid(point_nations$geometry)))),
+                          select = c("iso_a2", "X", "Y"))
+
   world_points <- rbind(world_points0, sepNat)
   
   if (exclude.iso.na == TRUE) {
-    world_points <- world_points %>% filter(!(is.na(iso_a2) | 
-                                                iso_a2 == -99))
+    
+    #world_points <- world_points %>% filter(!(is.na(iso_a2) | iso_a2 == -99))
+    world_points <- subset(world_points, !(is.na(iso_a2) | iso_a2 == -99))
   }
   
   if (UK_as_GB == TRUE) {
@@ -64,9 +69,11 @@ countrycoord_data <- function (countries.list = NULL, crs = 4326, UK_as_GB = TRU
   
   
   if (length(countries.list >0)) {
-    world_points <- world_points %>% filter(iso_a2 %in% countries.list)
-    notfoundcodes <- countries.list[!(countries.list %in% 
-                                        world_points$iso_a2)]
+    #world_points <- world_points %>% filter(iso_a2 %in% countries.list)
+    world_points <- subset(world_points, iso_a2 %in% countries.list)
+    
+    notfoundcodes <- countries.list[!(countries.list %in% world_points$iso_a2)]
+    
     if (length(notfoundcodes) > 0) {
       warning("One or more iso2 codes you provided (listed above) do not match in the data base")
       message(notfoundcodes)

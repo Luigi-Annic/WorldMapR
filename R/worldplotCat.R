@@ -49,7 +49,8 @@ worldplotCat <- function(data,
   
   simdata$iso_a2 <- replace(simdata$iso_a2, simdata$iso_a2 == "UK", "GB")
 
-  map_df <- left_join(map_df0, simdata, by = "iso_a2")
+  #map_df <- left_join(map_df0, simdata, by = "iso_a2")
+  map_df <- merge(WorldMapR::map_df0, simdata, by = "iso_a2", all.x = TRUE)
   
   if (crs != 4326 & transform_limits == TRUE) {
       #Correct longitude and latitude values

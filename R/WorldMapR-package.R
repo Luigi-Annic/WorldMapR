@@ -3,13 +3,6 @@
 
 ## usethis namespace: start
 #' @importFrom countrycode countrycode
-#' @importFrom dplyr %>%
-#' @importFrom dplyr arrange
-#' @importFrom dplyr filter
-#' @importFrom dplyr left_join
-#' @importFrom dplyr mutate
-#' @importFrom dplyr relocate
-#' @importFrom dplyr select
 #' @importFrom ggfx with_shadow
 #' @importFrom ggplot2 aes
 #' @importFrom ggplot2 coord_sf

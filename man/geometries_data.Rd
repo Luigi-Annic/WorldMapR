@@ -15,10 +15,7 @@ geometries_data(exclude.iso.na = TRUE, countries.list = NULL)
 an object of class \code{data.frame} and \code{sf}.
 }
 \description{
+This function is deprecated and not exported. It has been substituted with worldMapR::countrycoord_data.
 This function generates a data frame with information about geometries and centroid coordinates of
 countries. You can choose whether to keep all the countries or only a subset.
-}
-\examples{
-geometries_data(countries.list = c("IT", "FR", "US"))
-
 }

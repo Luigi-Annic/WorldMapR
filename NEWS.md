@@ -1,3 +1,9 @@
+# WorldMapr 1.3.0
+
+* dplyr is no longer an import for this package
+* Corrected a bug which caused the function to fail when an object named map_df0 was present in
+  the local environment
+
 # WorldMap 1.2.0
 
 * map_df0 is now saved as one of the dataset, meaning that it is not built from scratch every time
