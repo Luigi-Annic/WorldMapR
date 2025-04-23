@@ -29,6 +29,13 @@
 #' @importFrom sf st_crs
 #' @importFrom sf st_transform
 #' @importFrom sf st_union
+#' 
+#' @importFrom sf sf_use_s2
+#' @importFrom sf st_as_sfc
+#' @importFrom sf st_crop
+#' @importFrom sf st_geometry
+#' @importFrom sf st_intersects
+#' 
 #' @importFrom utils globalVariables
 ## usethis namespace: end
 NULL

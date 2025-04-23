@@ -1,4 +1,4 @@
-WorldMapR (v 1.1.0) is an R package for creating world heat maps, based on continuous or categorical variables.
+WorldMapR (v 1.3.0) is an R package for creating world heat maps, based on continuous or categorical variables.
 
 The attached vignette provides further information about how to use this package.
 

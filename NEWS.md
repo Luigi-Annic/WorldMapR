@@ -3,6 +3,8 @@
 * dplyr is no longer an import for this package
 * Corrected a bug which caused the function to fail when an object named map_df0 was present in
   the local environment
+* dataset regions_ITBIH added
+* empty_editable_map function added
 
 # WorldMap 1.2.0
 
