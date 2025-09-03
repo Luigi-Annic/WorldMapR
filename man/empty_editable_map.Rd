@@ -7,9 +7,9 @@
 empty_editable_map(lon, lat, crs = 4326, sf_use_s2 = FALSE)
 }
 \arguments{
-\item{lon}{Longitude limits. Default is \code{c(-180, 180)} (whole world with crs as EPSG::4326).}
+\item{lon}{Longitude limits.}
 
-\item{lat}{Latitude limits. Default is \code{c(-90, 90)} (whole world with crs as EPSG::4326).}
+\item{lat}{Latitude limits.}
 
 \item{crs}{Coordinate reference system (EPSG). By default the value is 4326, which corresponds to EPSG::4326 (WGS84)}
 

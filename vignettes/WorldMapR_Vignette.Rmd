@@ -1,6 +1,6 @@
 ---
 title: "WorldMapR"
-subtitle: "v. 1.1.0"
+subtitle: "v. 1.3.0"
 output: rmarkdown::html_vignette
 author: Luigi Annicchiarico
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -232,5 +232,18 @@ figure1
 
 dev.off()
 
+```
+
+# Editable maps in powerpoint
+
+The function `empty_editable_map` creates a map which can be saved in PowerPoint and edited from there.
+By default, this function creates a blank map.
+
+```{r, eval=FALSE}
+# create the map
+empty_editable_map(lon = c(-15, 40), lat = c(20, 65), crs = 4326)
+
+# save it
+export::graph2ppt(file ="editable_map15.pptx", width = 7, height = 4)
 ```
 

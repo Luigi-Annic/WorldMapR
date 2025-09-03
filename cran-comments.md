@@ -8,6 +8,6 @@ I have tested the package on:
 - macos-13 on GitHub, R-* (any version)
 - macos-latest on GitHub, R-* (any version)
 - windows-latest on GitHub, R-* (any version)
-- Fedora Linux 38 (Container Image), R-devel (2025-01-27 r87654)
+- Fedora Linux 38 (Container Image), R-devel
 
 No notes were generated
